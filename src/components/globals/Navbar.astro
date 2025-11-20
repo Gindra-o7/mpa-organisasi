@@ -1,0 +1,429 @@
+---
+import TranslateButton from "./TranslateButton.astro";
+import { ChevronRight, Search } from "@lucide/astro";
+
+// src/components/Navbar.astro
+// Definisikan tipe datanya terlebih dahulu
+export interface SubSubItem {
+	name: string;
+	href: string;
+}
+
+export interface SubItem {
+	name: string;
+	href: string;
+	subSubItems?: SubSubItem[]; // Properti baru yang opsional
+}
+
+export interface MenuItem {
+	name: string;
+	href: string;
+	subItems?: SubItem[];
+}
+
+// Data untuk menu navigasi. Mudah untuk diubah dan ditambah.
+const menuItems: MenuItem[] = [
+	{ name: "BERANDA", href: "/" },
+	{
+		name: "KAMPUS",
+		href: "#",
+		subItems: [
+			{ name: "Profil Kampus", href: "/kampus/profil" },
+			{ name: "Sambutan Ketua", href: "/kampus/sambutan-ketua" },
+			{
+				name: "Identitas, Visi & Misi, Tujuan",
+				href: "/kampus/identitas-visi-misi-tujuan",
+			},
+			{ name: "Struktur Organisasi", href: "/kampus/struktur-organisasi" },
+			{ name: "Kerjasama Kampus STIE Pancasetia", href: "/kampus/kerjasama" },
+			{ name: "Reservasi Fasilitas Kampus", href: "/kampus/reservasi" },
+			{
+				name: "Layanan Kontak Darurat",
+				href: "/kampus/layanan-kontak-darurat",
+			},
+		],
+	},
+	{
+		name: "PROGRAM STUDI",
+		href: "#",
+		subItems: [
+			{ name: "S1 Akuntansi", href: "/program-studi/s1-akuntansi" },
+			{ name: "S1 Manajemen", href: "/program-studi/s1-manajemen" },
+			{ name: "S2 Manajemen", href: "/program-studi/s2-manajemen" },
+		],
+	},
+	{ 
+		name: "AKADEMIK", 
+		href: "/akademik",
+		subItems: [			
+			{ 
+				name: "Panduan Perkuliahan", 
+				href: "/akademik/panduan-perkuliahan",
+				subSubItems: [
+					{ name: "Pedoman Akademik S1", href: "#" },
+					{ name: "Panduan Cuti & Pindah Kelas", href: "#" },
+					{ name: "Panduan Mengakses KRS & KHS", href: "#" },
+					{ name: "Panduan Pengajuan Judul Skripsi & Sidang Ujian Skripsi", href: "#" },
+					{ name: "Pedoman Mahasiswa S2", href: "#" },
+					{ name: "Panduan Registrasi Yudisium & Wisuda", href: "#" },
+					{ name: "Panduan Program Kreativitas Mahasiswa (PKM)", href: "#" },
+				] 
+			},
+			{ 
+				name: "E-Akademik", 
+				href: "/akademik/e-akademik", 
+				subSubItems: [					
+					{ name: "Akses Nilai & Jadwal", href: "/akademik/e-akademik/akses-nilai-jadwal" },
+					{ name: "Bahan Kuliah", href: "/akademik/e-akademik/bahan-kuliah" },
+					{ name: "Panduan Mahasiswa Baru", href: "/akademik/e-akademik/panduan-mahasiswa-baru" },
+					{ name: "Digilib", href: "https://siakad.stiepancasetia.ac.id/digilib" },
+					{ name: "E-Learning", href: "https://elearning.stiepancasetia.ac.id/" },
+					{ name: "E-Journal", href: "https://ejournal.stiepancasetia.ac.id/" },
+					{ name: "SIAM", href: "https://siakad.stiepancasetia.ac.id/siam" },
+					{ name: "Tracer Study", href: "https://siakad.stiepancasetia.ac.id/tracer" },
+					{ name: "Spada Indonesia", href: "https://spada.kemdikbud.go.id/" },
+					{ name: "SISTER", href: "https://sister.kemdikbud.go.id/" },
+				]
+			},
+			{ 
+				name: "Agenda", 
+				href: "/akademik/agenda",
+				subSubItems: [
+					{ name: "Kalender Kegiatan Kampus", href: "/akademik/agenda/kalender-kegiatan-kampus" },
+				]
+			},
+			{ name: "Panduan Penggunaan SIAM", href: "#" },
+			{ name: "Panduan Penggunaan E-Learning", href: "#" },
+			{ 
+				name: "Jadwal Kuliah", 
+				href: "/akademik/jadwal-kuliah",
+				subSubItems: [
+					{ name: "Kalender Akademik", href: "#" },
+					{ name: "Jadwal Unit Kegiatan Mahasiswa", href: "#" },
+				] 
+			},
+			{ name: "Perpustakaan", href: "/akademik/perpustakaan" },
+			{ name: "LPPM", href: "https://lppm.stiepancasetia.ac.id/" },
+			{ name: "Pengumuman Akademik", href: "/akademik/pengumuman" },
+			{ name: "Kalender Kegiatan Pancasetia", href: "/akademik/kalender-kegiatan" },
+			{ name: "Kontak Pelayanan", href: "/akademik/kontak-pelayanan" },
+			{ name: "Kampus Merdeka", href: "/akademik/kampus-merdeka" },
+			{ name: "Kurikulum S2", href: "https://drive.google.com/drive/folders/1JFftgQTXmivd7gGMVGNBevZd4pD9l8V_?usp=drive_link" },			
+		] 
+	},
+	{
+		name: "MAHASISWA",
+		href: "/mahasiswa",
+		subItems: [
+			{ name: "Beasiswa Pendidikan", href: "/mahasiswa/beasiswa-pendidikan" },
+			{ name: "Pertukaran Mahasiswa", href: "/mahasiswa/pertukaran-mahasiswa" },
+			{
+				name: "Unit Kegiatan Mahasiswa",
+				href: "/mahasiswa/unit-kegiatan-mahasiswa",
+			},
+			{ name: "Prestasi Mahasiswa", href: "/mahasiswa/prestasi" },
+			{
+				name: "Pengumuman Kemahasiswaan",
+				href: "/mahasiswa/pengumuman",
+			},
+			{ name: "Data Alumni", href: "/mahasiswa/data-alumni" },
+			{
+				name: "Portal Karir",
+				href: "/mahasiswa/portal-karir",
+				subSubItems: [
+					{
+						name: "Lowongan Kerja",
+						href: "/mahasiswa/portal-karir/lowongan-kerja",
+					},
+					{ name: "Penelitian", href: "/mahasiswa/portal-karir/penelitian" },
+					{ name: "Magang", href: "/mahasiswa/portal-karir/magang" },
+				],
+			},
+		],
+	},
+	{
+		name: "DOKUMEN",
+		href: "#",
+		subItems: [
+			{
+				name: "Formulir Surat Pengantar",
+				href: "https://docs.google.com/document/d/1AUl8SJajfge2IAozDZjVc21oGGSlVpcs/edit",
+			},
+			{
+				name: "Formulir Pendaftaran Wisuda",
+				href: "https://drive.google.com/file/d/1lyEOcnSI8hWVUxvd1EY_sVwd-rXiPM5x/view?usp=sharing",
+			},
+			{
+				name: "Formulir Pindah Kelas",
+				href: "/dokumen/formulir-surat-pengantar",
+			},
+			{
+				name: "Formulir Permohonan Surat Keterangan",
+				href: "https://docs.google.com/document/d/1AUl8SJajfge2IAozDZjVc21oGGSlVpcs/edit?usp=sharing&ouid=110418633937901563612&rtpof=true&sd=true",
+			},
+			{
+				name: "Form Peminjaman Fasilitas Lab Komputer",
+				href: "/dokumen/formulir-surat-pengantar",
+			},
+			{
+				name: "Panduan Pembayaran VA BSM Kampus Banjarmasin",
+				href: "https://drive.google.com/file/d/10ijaknFOsOQCL-39sXn9_E484n4POD7Y/view?usp=sharing",
+			},
+			{
+				name: "Panduan Pembayaran VA CIMB Kampus Banjarbaru",
+				href: "https://drive.google.com/file/d/1W3-KOxcnuUSiN-2ZRBe-oI6FDyNcVXXn/view?usp=sharing",
+			},
+			{
+				name: "Panduan Untuk Mahasiswa Internasional",
+				href: "https://drive.google.com/file/d/1S1YVDtIAKM9O6xB_UNYT71IFa0ryTlbz/view?usp=sharing",
+			},
+			{
+				name: "SK & Sertifikat Akreditasi",
+				href: "/dokumen/sk-sertifikat-akreditasi",
+			},
+			{
+				name: "Dokumen Lembaga Penjaminan Mutu (LPM)",
+				href: "/dokumen/formulir-surat-pengantar",
+			},
+		],
+	},
+	{ name: "PENDAFTARAN", href: "https://siakad.stiepancasetia.ac.id/pmb" },
+];
+---
+
+<nav
+	class="w-full sticky top-0 z-50 flex justify-between items-center px-6 2xl:px-32 bg-[#ac1234] shadow-md"
+>
+	<a
+		href="/"
+		class="cursor-pointer hover:scale-105 transition-transform duration-150 active:scale-95 flex-shrink-0"
+	>
+		<img
+			class="w-32 md:w-52 mb-1.5"
+			src="/logo-light.svg"
+			alt="Logo Universitas"
+		/>
+	</a>
+
+	<div
+		class="hidden xl:flex items-center mt-1 gap-8 text-white font-sora font-semibold xl:text-[0.800rem]"
+	>
+		{
+			menuItems.map((item) => (
+				<div class={`relative group py-6 ${item.subItems && "cursor-pointer"}`}>
+					<a
+						href={item.href}
+						class={`hover:text-yellow-300 transition-colors duration-150 pb-2 ${!item.subItems && "cursor-pointer"}`}
+					>
+						{item.name}
+						{item.subItems && (
+							<svg
+								class="inline w-4 h-4 ml-1"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M19 9l-7 7-7-7"
+								/>
+							</svg>
+						)}
+					</a>
+					{item.subItems && (
+						<div class="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-black/80 text-white shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+							<div class="py-2">
+								{item.subItems.map((subItem) => (
+									// Wrapper baru dengan 'relative' dan group/sub untuk hover bertingkat
+									<div class="relative group/sub">
+										<a
+											href={subItem.href}
+											class="w-full flex justify-between items-center px-4 py-2 text-white hover:bg-black/80"
+										>
+											{subItem.name}
+											{/* Tambahkan ikon panah kanan jika ada sub-menu lagi */}
+											{subItem.subSubItems && <ChevronRight class="w-4 h-4" />}
+										</a>
+
+										{/* Render Dropdown Level 2 (sub-sub-item) */}
+										{subItem.subSubItems && (
+											<div class="absolute top-0 left-full w-56 bg-black/80 text-white shadow-lg opacity-0 group-hover/sub:opacity-100 invisible group-hover/sub:visible transition-all duration-300">
+												<div class="py-2">
+													{subItem.subSubItems.map((subSubItem) => (
+														<a
+															href={subSubItem.href}
+															class="block px-4 py-2 text-white hover:bg-black/80"
+														>
+															{subSubItem.name}
+														</a>
+													))}
+												</div>
+											</div>
+										)}
+									</div>
+								))}
+							</div>
+						</div>
+					)}
+				</div>
+			))
+		}
+		<TranslateButton />
+		<Search class="-ml-5 w-8 h-8" />
+	</div>
+
+	<div class="xl:hidden flex gap-1 md:gap-2 py-1 md:py-4 justify-center items-center">
+		<TranslateButton />
+		<button id="hamburger-button" class="text-white focus:outline-none mt-1">
+			<svg
+				class="md:w-8 md:h-8 w-6 h-6"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M4 6h16M4 12h16m-7 6h7"></path>
+			</svg>
+		</button>
+	</div>
+</nav>
+
+<div
+	id="mobile-menu"
+	class="fixed top-0 left-0 w-full h-full bg-[#ac1234] z-40 transform -translate-y-full transition-transform duration-300 ease-in-out xl:hidden overflow-y-auto"
+>
+	<div class="mt-[50px]">
+		<div class="flex flex-col text-white text-md font-sora font-semibold">
+			{
+				menuItems.map((item) => (
+					// REVISI: Mengubah padding dan gap
+					<div class="border-b border-gray-100/30 px-7 py-4">
+						{" "}
+						{!item.subItems ? (
+							<a
+								href={item.href}
+								class="block w-full hover:text-yellow-300 transition-colors"
+							>
+								{item.name}{" "}
+							</a>
+						) : (
+							// Accordion Level 1 (Induk)
+							<div>
+								{" "}
+								<button class="accordion-toggle flex justify-between items-center w-full hover:text-yellow-300 transition-colors">
+									                                    <span>{item.name}</span> 
+									                                 {" "}
+									<svg
+										class="w-5 h-5 transition-transform duration-300"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										                                       {" "}
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M19 9l-7 7-7-7"
+										/>
+										                                   {" "}
+									</svg>
+									                               {" "}
+								</button>
+								{/* REVISI: Panel Level 1 tidak lagi punya warna latar belakang */}{" "}
+								<div class="accordion-panel py-3.5 px-4 mt-4 flex flex-col gap-3 bg-[#860b26] rounded-lg">
+									{" "}
+									{item.subItems.map((subItem) =>
+										// INI LOGIKA BARUNYA
+										!subItem.subSubItems ? (
+											// JIKA TIDAK ADA subSubItems, render link biasa
+											<a
+												href={subItem.href}
+												class="block py-1 text-base font-medium text-gray-200 hover:text-white"
+											>
+												{subItem.name}
+											</a>
+										) : (
+											// JIKA ADA, render Akordeon Level 2
+											<div>
+												<button class="accordion-toggle flex gap-3 items-center w-full py-1 text-base font-medium text-gray-200 hover:text-white">
+													<span>{subItem.name}</span>
+													<svg
+														class="w-5 h-5 transition-transform duration-300"
+														fill="none"
+														stroke="currentColor"
+														viewBox="0 0 24 24"
+													>
+														<path
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															stroke-width="2"
+															d="M19 9l-7 7-7-7"
+														/>
+													</svg>
+												</button>
+												<div class="accordion-panel pl-4 py-2 mt-2 flex flex-col gap-2 bg-[#701225] rounded-lg">
+													{subItem.subSubItems.map((subSubItem) => (
+														<a
+															href={subSubItem.href}
+															class="block py-1 text-sm font-medium text-gray-300 hover:text-white"
+														>
+															{subSubItem.name}
+														</a>
+													))}
+												</div>
+											</div>
+										)
+									)}{" "}
+								</div>{" "}
+							</div>
+						)}{" "}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	const hamburgerButton = document.getElementById("hamburger-button");
+	const mobileMenu = document.getElementById("mobile-menu");
+	// Tombol close sekarang menjadi bagian dari hamburger itu sendiri (toggle)
+	// Jadi, kita bisa hapus event listener untuk close button terpisah jika mau,
+	// atau kita buat hamburger sebagai tombol close juga saat menu terbuka.
+	// Untuk simpelnya, kita buat hamburger sebagai toggle.
+
+	hamburgerButton!.addEventListener("click", () => {
+		// Cek apakah menu sedang terbuka atau tidak
+		const isMenuOpen = !mobileMenu!.classList.contains("-translate-y-full");
+
+		if (isMenuOpen) {
+			mobileMenu!.classList.add("-translate-y-full");
+		} else {
+			mobileMenu!.classList.remove("-translate-y-full");
+		}
+	});
+
+	// Logika untuk Akordeon
+	const accordions = document.querySelectorAll(".accordion-toggle");
+	accordions.forEach((accordion) => {
+		accordion.addEventListener("click", () => {
+			// Dapatkan panel sub-menu
+			const panel = accordion.nextElementSibling;
+			// Dapatkan ikon panah
+			const icon = accordion.querySelector("svg");
+
+			// Toggle class 'hidden' untuk expand/collapse
+			panel!.classList.toggle("hidden");
+			// Toggle rotasi ikon
+			icon!.classList.toggle("rotate-180");
+		});
+	});
+</script>

@@ -1,0 +1,221 @@
+---
+import { ArrowRight, ArrowUpRight } from "@lucide/astro";
+
+const title = "Pengumuman Terbaru";
+const linkHref = "https://stiepancasetia.ac.id/akademik/pengumuman";
+
+const pengumumanData = [
+	{
+		slug: "penerimaan-mahasiswa-baru-2025",
+		judul: "Penerimaan Mahasiswa Baru Tahun Akademik 2025/2026",
+		thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop",
+		isi: "Pendaftaran mahasiswa baru untuk tahun akademik 2025/2026 telah dibuka. Dapatkan kesempatan untuk bergabung dengan kampus terbaik di Kalimantan dengan berbagai program studi unggulan.",
+		date_created: "2024-11-15T10:00:00"
+	},
+	{
+		slug: "beasiswa-prestasi-2025",
+		judul: "Program Beasiswa Prestasi untuk Mahasiswa Berprestasi",
+		thumbnail: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop",
+		isi: "Kampus membuka program beasiswa prestasi bagi mahasiswa yang memiliki prestasi akademik maupun non-akademik. Segera daftarkan diri Anda dan raih kesempatan mendapatkan beasiswa penuh.",
+		date_created: "2024-11-10T14:30:00"
+	},
+	{
+		slug: "ujian-tengah-semester-genap",
+		judul: "Jadwal Ujian Tengah Semester Genap 2024/2025",
+		thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+		isi: "Pengumuman jadwal Ujian Tengah Semester (UTS) Genap untuk tahun akademik 2024/2025. Mahasiswa diharapkan mempersiapkan diri dengan baik dan memperhatikan jadwal yang telah ditentukan.",
+		date_created: "2024-11-08T09:15:00"
+	},
+	{
+		slug: "seminar-nasional-teknologi",
+		judul: "Seminar Nasional Teknologi dan Inovasi Digital 2025",
+		thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
+		isi: "Kampus akan mengadakan Seminar Nasional dengan tema Teknologi dan Inovasi Digital. Acara ini terbuka untuk umum dan akan menghadirkan pembicara-pembicara terkemuka dari berbagai universitas.",
+		date_created: "2024-11-05T16:45:00"
+	},
+	{
+		slug: "wisuda-periode-1-2025",
+		judul: "Pelaksanaan Wisuda Periode I Tahun 2025",
+		thumbnail: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop",
+		isi: "Pengumuman pelaksanaan wisuda untuk lulusan periode I tahun 2025. Bagi mahasiswa yang telah menyelesaikan studi, silakan melakukan pendaftaran wisuda sesuai dengan ketentuan yang berlaku.",
+		date_created: "2024-11-01T11:20:00"
+	},
+	{
+		slug: "pelatihan-soft-skills",
+		judul: "Pelatihan Soft Skills untuk Mahasiswa Semester Akhir",
+		thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
+		url_thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
+		isi: "Program pelatihan soft skills khusus untuk mahasiswa semester akhir dalam rangka persiapan memasuki dunia kerja. Materi meliputi komunikasi efektif, leadership, dan personal branding.",
+		date_created: "2024-10-28T13:00:00"
+	}
+];
+---
+
+<section class="bg-white py-10 md:pt-11 md:pb-12 font-sora">
+	<div class="px-6 2xl:px-28 flex flex-col gap-10">
+		<div
+			class="flex gap-7 flex-col lg:flex-row lg:items-center lg:justify-between"
+		>
+			<div class="lg:w-7/12">
+				<h2
+					class="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight"
+				>
+					{title}
+				</h2>
+			</div>
+			<div class="w-64 -mr-1 flex justify-end items-center h-full relative">
+				<div class="absolute left-2 bg-[#ac1234]/60 w-14 h-14 rounded-full">
+				</div>
+				<a
+					href={linkHref}
+					target="_blank"
+					class="gap-1 cursor-pointer hover:underline flex items-center"
+				>
+					<span class="z-10 font-medium">Lihat Pengumuman Lain</span>
+					<ArrowUpRight class="w-7 h-7 text-black" />
+				</a>
+			</div>
+		</div>
+
+		<div class="embla-carousel-pengumuman relative -mx-4">
+			<div class="embla__viewport overflow-hidden md:ml-4">
+				<div class="embla__container flex md:-ml-4">
+					{
+						pengumumanData.map(
+							(pengumuman: {
+								slug: string;
+								judul: string;
+								thumbnail: string;
+								url_thumbnail: string;
+								isi: string;
+								date_created: string;
+							}) => (
+								<div class="embla__slide min-w-0 flex-shrink-0 basis-full flex-grow-0 md:basis-1/2 md:pl-4 lg:basis-1/3">
+									{/* Card Container */}
+									<div class="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white hover:bg-gray-50 shadow-sm transition-all duration-300 hover:shadow-lg">
+										{/* Block 1: Gambar */}
+										<a
+											href={`/pengumuman/${pengumuman.slug}`}
+											class="block shrink-0"
+										>
+											<img
+												src={pengumuman.url_thumbnail}
+												alt={`Thumbnail untuk ${pengumuman.judul}`}
+												class="h-56 w-full object-cover"
+											/>
+										</a>
+
+										{/* Block 2: Konten Teks */}
+										<div class="flex flex-grow flex-col p-6">
+											<span class="text-sm text-gray-500">
+												{new Intl.DateTimeFormat("id-ID", {
+													day: "numeric",
+													month: "long",
+													year: "numeric",
+													hour: "2-digit",
+													minute: "2-digit",
+													timeZoneName: "short",
+												}).format(new Date(pengumuman.date_created))}
+											</span>
+											<h5 class="my-2 text-xl font-bold leading-tight text-gray-900">
+												<a
+													href={`/pengumuman/${pengumuman.slug}`}
+													class="hover:text-[#ac1234] transition-colors duration-200"
+												>
+													{pengumuman.judul}
+												</a>
+											</h5>
+											<p class="text-base leading-relaxed text-gray-600">
+												{pengumuman.isi
+													?.replace(/<[^>]*>?/gm, " ")
+													.substring(0, 100) + "..."}
+											</p>
+										</div>
+
+										{/* Block 3: Tombol "Read More" */}
+										<div class="mt-auto px-6 pb-6">
+											<a
+												href={`/pengumuman/${pengumuman.slug}`}
+												class="group inline-flex items-center gap-2 font-semibold text-[#ac1234] hover:text-red-800"
+											>
+												Baca Selengkapnya
+												<ArrowRight class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+											</a>
+										</div>
+									</div>
+								</div>
+							)
+						)
+					}
+				</div>
+			</div>
+
+			<button
+				class="embla__prev absolute md:top-1/2 md:-translate-y-1/2 top-1.5 left-1 md:left-[-2.5rem] hidden md:flex items-center justify-center md:w-12 md:h-12 w-8 h-8 bg-amber-300/50 backdrop-blur-sm rounded-full shadow-md text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+			>
+				<svg
+					class="w-6 h-6"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M15 19l-7-7 7-7"></path></svg
+				>
+			</button>
+			<button
+				class="embla__next absolute md:top-1/2 md:-translate-y-1/2 bottom-3.5 md:-right-[3.4rem] right-3 flex items-center justify-center md:w-12 md:h-12 w-8 h-8 bg-amber-300/50 backdrop-blur-sm rounded-full shadow-md text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+			>
+				<svg
+					class="w-6 h-6"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 5l7 7-7 7"></path></svg
+				>
+			</button>
+		</div>
+	</div>
+</section>
+
+<script>
+	import EmblaCarousel from "embla-carousel";
+
+	const emblaRoot = document.querySelector(".embla-carousel-pengumuman");
+
+	if (emblaRoot) {
+		const viewport = emblaRoot.querySelector<HTMLElement>(".embla__viewport");
+		const prevBtn = emblaRoot.querySelector<HTMLButtonElement>(".embla__prev");
+		const nextBtn = emblaRoot.querySelector<HTMLButtonElement>(".embla__next");
+
+		if (viewport && prevBtn && nextBtn) {
+			const emblaApi = EmblaCarousel(viewport, { loop: true, align: "start" });
+
+			const updateArrowButtons = () => {
+				if (!emblaApi) return;
+				prevBtn.disabled = !emblaApi.canScrollPrev();
+				nextBtn.disabled = !emblaApi.canScrollNext();
+			};
+
+			// REVISI: Gunakan arrow function untuk menjaga konteks 'this'
+			prevBtn.addEventListener("click", () => emblaApi.scrollPrev(), false);
+			nextBtn.addEventListener("click", () => emblaApi.scrollNext(), false);
+
+			emblaApi.on("select", updateArrowButtons);
+			emblaApi.on("reInit", updateArrowButtons);
+
+			updateArrowButtons();
+		}
+	}
+</script>

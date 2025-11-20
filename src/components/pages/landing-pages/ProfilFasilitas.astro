@@ -1,0 +1,71 @@
+---
+// src/components/ProfilFasilitas.astro
+
+// Data untuk komponen ini didefinisikan di sini
+const subTitle = "Profil dan Fasilitas";
+const mainTitle = "Selamat datang dikampus";
+const strokedText = "GILA MARKETING";
+const description = "Fasilitas kampus untuk menghasilkan lingkungan pendidikan yang unik dimana interaksi antar civitas akademika dapat terjadi dalam suasana yang inspiratif dan menyenangkan.";
+
+// Path untuk gambar. Pastikan gambar ada di folder `public/assets/img/profile/`
+const img1Src = "happy-human-landing-page.svg";
+const img2Src = "paperfly-human-landing-page.svg";
+
+// Daftar fasilitas
+const facilitiesList = [
+    "Ruang Kelas",
+    "Lab. Komputer",
+    "Ruang Dosen",
+    "Tempat Parkir",
+    "Student Lounge",
+    "Ruang Pelayanan",
+    "Kantin",
+    "Musholla"
+];
+---
+
+<section class="intro-corp font-sora bg-[#57091b] text-white py-12 lg:py-32 lg:pt-20 overflow-hidden">
+    <div class="container mx-auto px-8 md:px-4 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative min-h-[400px] lg:min-h-[500px]">
+                <div class="absolute w-[75%] right-0 top-0 z-10">
+                    <div class="relative">
+                        <span class="absolute left-[-30px] top-0 w-2 h-36 bg-green-400"></span>
+                        <img src={img1Src} alt="Fasilitas Kampus 1" class="rounded-lg w-full shadow-2xl">
+                        <div class="absolute right-[-30px] bottom-[-30px] w-48 h-48 bg-repeat opacity-70 z-[-1]"></div>
+                    </div>
+                </div>
+                <div class="absolute w-[50%] left-0 bottom-[-50px] z-20">
+                    <img src={img2Src} alt="Fasilitas Kampus 2" class="rounded-lg w-full shadow-2xl">
+                </div>
+            </div>
+
+            <div>
+                <h6 class="text-sm md:-mt-5 font-light uppercase tracking-[2px] mb-4 text-gray-300">{subTitle}</h6>
+                <h3 class="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+                    {mainTitle}<br>
+                    <span class="font-bold opacity-70 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.9)] notranslate">
+                        {strokedText}
+                    </span>
+                </h3>
+                <p class="text-gray-300 leading-relaxed">{description}</p>
+                
+                <div class="md:mt-12 mt-7 pt-5 -mb-2 md:pt-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                        {facilitiesList.map(item => (
+                            <div class="flex items-center gap-3 mt-3">
+                                <span class="w-4 h-4 flex-shrink-0">
+                                    <svg width="100%" height="100%" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.71108 3.78684L8.22361 4.29813L7.71263 4.80992L4.64672 7.87832L4.13433 7.36688L6.87531 4.62335H1.11181H0.750039H0.388177L0.382812 0.718232H1.10645L1.11082 3.90005H6.80113L4.12591 1.22972L4.63689 0.718262L7.71108 3.78684Z" fill="#e7b8c3"></path>
+                                    </svg>
+                                </span>
+                                <span class="text-gray-200">{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

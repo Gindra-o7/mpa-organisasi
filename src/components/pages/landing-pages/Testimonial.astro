@@ -1,0 +1,115 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+
+const testimonialData = [
+	{
+		isi: "Program ini benar-benar mengubah karir saya. Dari yang awalnya tidak tahu apa-apa tentang coding, sekarang saya sudah bekerja sebagai Full Stack Developer di perusahaan teknologi ternama.",
+		nama: "Budi Santoso",
+		titel: "Full Stack Developer",
+		url_foto_profil: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+	},
+	{
+		isi: "Mentor-mentornya sangat berpengalaman dan sabar dalam mengajar. Materinya juga up-to-date dengan kebutuhan industri saat ini. Highly recommended!",
+		nama: "Siti Nurhaliza",
+		titel: "Frontend Developer",
+		url_foto_profil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+	},
+	{
+		isi: "Investasi terbaik yang pernah saya lakukan. Setelah lulus dari program ini, saya langsung mendapat tawaran kerja dengan gaji yang memuaskan.",
+		nama: "Ahmad Rizki",
+		titel: "Backend Developer",
+		url_foto_profil: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop"
+	},
+	{
+		isi: "Kurikulumnya terstruktur dengan baik, dari basic sampai advanced. Project-based learning-nya juga sangat membantu untuk memahami konsep dengan lebih baik.",
+		nama: "Dewi Lestari",
+		titel: "UI/UX Developer",
+		url_foto_profil: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop"
+	}
+];
+---
+
+<section class="bg-[#ac1234] py-10 md:py-28 font-sora text-white">
+	<div class="container mx-auto px-6 lg:px-28">
+		<div class="flex flex-col lg:flex-row lg:gap-20">
+			<div class="lg:w-1/3 mb-12 lg:mb-0 flex flex-col justify-center">
+				<div class="mb-4 inline-block">
+					<span
+						class="rounded-full border-2 border-white/30 px-5 py-2 text-sm font-semibold text-white"
+					>
+						Alumni Telah Membuktikan?
+					</span>
+				</div>
+
+				<h2 class="text-4xl md:mt-0 mt-2 md:text-6xl font-bold tracking-tight">
+					Testimonial
+				</h2>
+
+				<div class="flex items-center gap-4 mt-5 -mb-5 md:mb-0 md:mt-10">
+					<button
+						id="testimonialPrev"
+						class="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white hover:text-[#ac1234] disabled:opacity-40"
+						aria-label="Previous testimonial"
+					>
+						<ArrowLeft class="h-6 w-6" />
+					</button>
+					<button
+						id="testimonialNext"
+						class="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white hover:text-[#ac1234] disabled:opacity-40"
+						aria-label="Next testimonial"
+					>
+						<ArrowRight class="h-6 w-6" />
+					</button>
+				</div>
+			</div>
+
+			<div class="lg:w-2/3">
+				<div class="embla-carousel--testimonial overflow-hidden">
+					<div class="embla__container flex">
+						{
+							testimonialData.map((testimonial) => (
+								<div class="embla__slide min-w-0 flex-shrink-0 basis-full xl:basis-1/2 md:pl-6">
+									<div class="flex h-full flex-col rounded-2xl bg-[#ac1234] p-8 text-white shadow-lg border-2 border-gray-300">
+										<div class="flex-grow">
+											<p class="leading-relaxed">"{testimonial.isi}"</p>
+										</div>
+										<div class="mt-8 flex items-center pt-6 border-t border-gray-200">
+											<div class="h-14 w-14 flex-shrink-0 overflow-hidden rounded-full">
+												<img
+													src={testimonial.url_foto_profil}
+													alt={`Foto ${testimonial.nama}`}
+													class="h-full w-full object-cover"
+												/>
+											</div>
+											<div class="ml-4">
+												<p class="font-bold text-white">{testimonial.nama}</p>
+												<p class="text-sm text-gray-200">{testimonial.titel}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import emblaCarousel from "embla-carousel";
+
+	if (typeof window !== "undefined") {
+		const emblaNode = document.querySelector<HTMLElement>(".embla-carousel--testimonial");
+		const prevBtn = document.getElementById("testimonialPrev");
+		const nextBtn = document.getElementById("testimonialNext");
+
+		if (emblaNode) {
+			const embla = emblaCarousel(emblaNode, { loop: true });
+
+			prevBtn?.addEventListener("click", () => embla.scrollPrev());
+			nextBtn?.addEventListener("click", () => embla.scrollNext());
+		}
+	}
+</script>

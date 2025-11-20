@@ -1,0 +1,168 @@
+<div id="preloader" class="loader-wrap">
+	<svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+		<path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+	</svg>
+
+	<div class="loader-wrap-heading">
+		<div class="load-text">
+			<span>p</span>
+			<span>a</span>
+			<span>n</span>
+			<span>c</span>
+			<span>a</span>
+			<span>s</span>
+			<span>e</span>
+			<span>t</span>
+			<span>i</span>
+			<span>a</span>
+		</div>
+	</div>
+</div>
+
+<style>
+	.loader-wrap {
+		position: fixed;
+		z-index: 9999;
+		height: 100vh;
+		width: 100%;
+		left: 0;
+		top: 0;
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+	}
+
+	.loader-wrap svg {
+		position: absolute;
+		top: 0;
+		width: 100vw;
+		height: 110vh;
+		fill: #ac1234; /* Warna dari style.css Anda */
+	}
+
+	.loader-wrap .loader-wrap-heading .load-text {
+		font-size: 20px;
+		font-weight: 200;
+		letter-spacing: 15px;
+		text-transform: uppercase;
+		color: white;
+		position: relative; /* Agar di atas SVG */
+		z-index: 20;
+	}
+
+	/* Animasi teks berkedip awal */
+	.load-text span {
+		animation: loading 1s infinite alternate;
+	}
+	.load-text span:nth-child(1) {
+		animation-delay: 0s;
+	}
+	.load-text span:nth-child(2) {
+		animation-delay: 0.1s;
+	}
+	.load-text span:nth-child(3) {
+		animation-delay: 0.2s;
+	}
+	.load-text span:nth-child(4) {
+		animation-delay: 0.3s;
+	}
+	.load-text span:nth-child(5) {
+		animation-delay: 0.4s;
+	}
+	.load-text span:nth-child(6) {
+		animation-delay: 0.5s;
+	}
+	.load-text span:nth-child(7) {
+		animation-delay: 0.6s;
+	}
+	.load-text span:nth-child(8) {
+		animation-delay: 0.7s;
+	}
+	.load-text span:nth-child(9) {
+		animation-delay: 0.8s;
+	}
+	.load-text span:nth-child(10) {
+		animation-delay: 0.9s;
+	}
+
+	@keyframes loading {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+	/* --- INI BAGIAN PERBAIKAN UNTUK MOBILE --- */
+	@media (max-width: 768px) {
+		.loader-wrap .loader-wrap-heading .load-text {
+			font-size: 16px; /* Ukuran font diperkecil */
+			letter-spacing: 8px; /* Jarak antar huruf dikurangi */
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+
+	// Fungsi ini akan berjalan setelah komponen di-render di browser
+	function runPreloaderAnimation() {
+		const svg = document.getElementById("svg");
+		const tl = gsap.timeline(); // Inisialisasi Timeline GSAP
+
+		// --- INI BAGIAN PERBAIKAN UNTUK LEKUKAN SVG ---
+		// Path SVG default untuk desktop (lekukan dalam)
+		let curve = "M0 502S175 272 500 272s500 230 500 230V0H0Z";
+		const flat = "M0 2S175 1 500 1s500 1 500 1V0H0Z";
+
+		// Cek lebar layar. Jika mobile, gunakan path dengan lekukan yang lebih landai
+		if (window.innerWidth <= 768) {
+			// Ganti baris 'curve' yang lama dengan yang ini
+			curve = "M0 1005 S175 900 500 900 s500 105 500 105 V0 H0 Z";
+		}
+		// --- AKHIR BAGIAN PERBAIKAN ---
+
+		// --- Rangkaian Animasi (Timeline) ---
+
+		// 1. Teks menghilang (bergerak ke atas & fade out)
+		tl.to(".loader-wrap-heading .load-text", {
+			delay: 1.5,
+			y: -100,
+			opacity: 0,
+		});
+
+		// 2. Animasi SVG dari melengkung ke datar (efek gelombang/tirai)
+		tl.to(svg, {
+			duration: 0.5,
+			attr: { d: curve },
+			ease: "power2.easeIn",
+		}).to(svg, {
+			duration: 0.5,
+			attr: { d: flat },
+			ease: "power2.easeOut",
+		});
+
+		// 3. Seluruh preloader NAIK KE ATAS
+		tl.to(".loader-wrap", {
+			y: -1500,
+		});
+
+		// 4. Sembunyikan preloader dari DOM setelah animasi selesai
+		tl.to(".loader-wrap", {
+			display: "none",
+		});
+
+		// (Opsional) Animasi "after-loading" dari kode lama Anda agar transisi mulus
+		tl.from(
+			"nav", // Ganti 'header' jika elemen header utama Anda berbeda
+			{ y: 200 },
+			"-=1.5" // Mulai 1.5 detik sebelum animasi sebelumnya selesai
+		);
+	}
+
+	// Menjalankan animasi saat halaman siap
+	document.addEventListener("DOMContentLoaded", runPreloaderAnimation);
+</script>

@@ -1,0 +1,39 @@
+---
+import Cursor from "../components/globals/Cursor.astro";
+import Preloader from "../components/globals/Preloader.astro";
+import Navbar from "../components/globals/Navbar.astro";
+import FloatingChat from "../components/globals/FloatingChat.astro";
+import CTAMarketing from "../components/globals/CTAMarketing.astro";
+import Contact from "../components/globals/Contact.astro";
+import Footer from "../components/globals/Footer.astro";
+
+import '../styles/globals.css';
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} - STIE Pancasetia: Kampus Paling Modern di-Kalimantan</title>
+	</head>
+	<body class="bg-white">
+		<Preloader />
+		<Cursor />
+
+		<Navbar />
+
+		<slot />
+		
+		<CTAMarketing />
+		<Contact />
+		<Footer />
+
+		<FloatingChat />
+	</body>
+</html>

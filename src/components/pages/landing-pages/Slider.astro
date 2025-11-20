@@ -1,0 +1,293 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+
+// 1. Mendefinisikan tipe data untuk setiap slide menggunakan TypeScript
+export interface Slide {
+	gambar: string;
+	label: string;
+	cta_label: string;
+	cta_url: string;
+}
+
+// 2. Data slides hardcoded
+const slides: Slide[] = [
+	{
+		gambar: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop",
+		label: "Bergabunglah dengan <span class='text-[#ac1234]'>Generasi Digital</span> Masa Depan",
+		cta_label: "Daftar Sekarang",
+		cta_url: "/pendaftaran"
+	},
+	{
+		gambar: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&h=1080&fit=crop",
+		label: "Fasilitas <span class='text-[#ac1234]'>Terlengkap</span> untuk Mahasiswa Berkualitas",
+		cta_label: "Lihat Fasilitas",
+		cta_url: "/fasilitas"
+	},
+	{
+		gambar: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1920&h=1080&fit=crop",
+		label: "Raih <span class='text-[#ac1234]'>Prestasi</span> Bersama Kami",
+		cta_label: "Info Lebih Lanjut",
+		cta_url: "/tentang"
+	},
+	{
+		gambar: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1920&h=1080&fit=crop",
+		label: "Kampus <span class='text-[#ac1234]'>Terdepan</span> di Kalimantan",
+		cta_label: "Hubungi Kami",
+		cta_url: "/kontak"
+	}
+];
+
+// 3. Autoplay delay
+const autoplayDelay = 6000;
+---
+
+<div
+	id="carousel-container"
+	class="w-full h-[95svh] md:h-[91svh] relative"
+	aria-roledescription="carousel"
+>
+	<div class="overflow-hidden w-full h-full">
+		<div id="carousel-track" class="flex h-full cursor-grab">
+			{
+				slides.map((slide: Slide) => (
+					<div
+						class="carousel-slide w-full h-full flex-shrink-0 relative"
+						role="group"
+						aria-roledescription="slide"
+					>
+						<img
+							src={slide.gambar}
+							alt={slide.cta_label}
+							class="w-full absolute h-full object-cover pointer-events-none"
+							loading="lazy"
+						/>
+						<div class="absolute flex flex-col gap-8 justify-center items-center w-full h-full bg-black/50 p-6 md:p-12 font-sora">
+							<span class="flex text-[0.76rem] md:text-base justify-center items-center gap-1 text-white">
+								<ArrowUpRight class="md:w-7 md:h-7 w-5 h-5 text-white" />
+								KAMPUS PALING MODERN DI KALIMANTAN
+							</span>
+
+							<div
+								set:html={slide.label}
+								class="text-white text-2xl md:text-6xl leading-tight text-center font-bold"
+							/>
+
+							<button
+								onclick={`window.location.href='${slide.cta_url}'`}
+								class="md:mt-2 text-sm md:text-base flex justify-center items-center gap-1 text-white md:px-5 md:py-3 px-3 py-1.5 bg-[#ac1234] hover:bg-[#751127] hover:scale-105 active:scale-95 transition-transform duration-150 cursor-pointer"
+							>
+								{slide.cta_label}
+								<ArrowUpRight class="md:w-7 md:h-7 w-5 h-5 text-white" />
+							</button>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	/* Mencegah pemilihan teks yang tidak diinginkan saat menggeser */
+	#carousel-track.dragging {
+		user-select: none;
+		-webkit-user-select: none; /* Safari */
+	}
+</style>
+
+<script define:vars={{ autoplayDelay }}>
+	// 6. Semua logika JavaScript dikonversi ke TypeScript
+	document.addEventListener("DOMContentLoaded", () => {
+		const track = document.getElementById("carousel-track");
+		if (!track) return;
+
+		const slides = Array.from(track.querySelectorAll(".carousel-slide"));
+		if (slides.length === 0) return;
+
+		// --- Setup untuk Looping ---
+		const slidesCount = slides.length;
+		const firstClone = slides[0].cloneNode(true);
+		const lastClone = slides[slidesCount - 1].cloneNode(true);
+		track.appendChild(firstClone);
+		track.prepend(lastClone);
+
+		const allSlides = Array.from(track.querySelectorAll(".carousel-slide"));
+
+		function stopAutoPlay() {
+			clearInterval(autoPlayInterval);
+		}
+
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				stopAutoPlay(); // Hentikan jika tab tidak aktif
+			} else {
+				startAutoPlay(); // Mulai lagi jika tab kembali aktif
+			}
+		});
+
+		// --- Inisialisasi State ---
+		let currentIndex = 1;
+		let isDragging = false;
+		let startPos = 0;
+		let currentTranslate = 0;
+		let prevTranslate = 0;
+		let animationFrameId; // Untuk menyimpan ID dari rAF
+		let lastTime; // Untuk melacak waktu frame terakhir
+		let timeSinceLastSlide = 0; // Akumulator waktu
+
+		// --- Inisialisasi State ---
+		let isTransitioning = false; // <-- TAMBAHKAN INI
+		// ... sisa variabel lainnya
+
+		const setPositionByIndex = () => {
+			const slideWidth = slides[0].offsetWidth;
+			currentTranslate = -currentIndex * slideWidth;
+			track.style.transform = `translateX(${currentTranslate}px)`;
+		};
+
+		const setInitialPosition = () => {
+			track.style.transition = "none";
+			setPositionByIndex();
+		};
+
+		setInitialPosition();
+
+		// --- Fungsi Animasi ---
+		const animation = () => {
+			track.style.transform = `translateX(${currentTranslate}px)`;
+			if (isDragging) {
+				requestAnimationFrame(animation);
+			}
+		};
+
+		// --- Event Handlers (Drag/Swipe) ---
+		function getPositionX(event) {
+			return event.type.includes("mouse")
+				? event.pageX
+				: event.touches[0].clientX;
+		}
+
+		// GANTI SELURUH FUNGSI dragStart ANDA DENGAN INI:
+		function dragStart(event) {
+			// 1. Hentikan autoplay, ini selalu penting
+			stopAutoPlay();
+
+			// 2. Jika transisi sedang berjalan, kita interupsi!
+			if (isTransitioning) {
+				// Ambil posisi translateX saat ini dari style CSS
+				const style = window.getComputedStyle(track);
+				const matrix = new DOMMatrixReadOnly(style.transform);
+				currentTranslate = matrix.m41; // m41 adalah nilai translateX
+
+				// Hentikan animasi CSS dan update posisi transform
+				track.style.transition = "none";
+				track.style.transform = `translateX(${currentTranslate}px)`;
+
+				// Buka kunci karena sekarang kontrol di tangan pengguna
+				isTransitioning = false;
+			}
+
+			// 3. Lanjutkan dengan logika drag seperti biasa
+			isDragging = true;
+			startPos = getPositionX(event);
+			prevTranslate = currentTranslate; // Penting: update prevTranslate ke posisi saat ini
+			track.classList.add("cursor-grabbing", "dragging");
+		}
+
+		function dragMove(event) {
+			if (isDragging) {
+				const currentPosition = getPositionX(event);
+				currentTranslate = prevTranslate + currentPosition - startPos;
+				track.style.transform = `translateX(${currentTranslate}px)`;
+			}
+		}
+
+		function dragEnd() {
+			if (!isDragging) return;
+			isDragging = false;
+			track.classList.remove("cursor-grabbing", "dragging");
+
+			const movedBy = currentTranslate - prevTranslate;
+			const slideWidth = slides[0].offsetWidth;
+
+			if (movedBy < -slideWidth * 0.2 && currentIndex < slidesCount + 1) {
+				currentIndex += 1;
+			} else if (movedBy > slideWidth * 0.2 && currentIndex > 0) {
+				currentIndex -= 1;
+			}
+
+			isTransitioning = true; // <-- TAMBAHKAN INI
+
+			track.style.transition = "transform 0.7s ease-in-out";
+			setPositionByIndex();
+			startAutoPlay();
+		}
+
+		// --- Logika Looping & Autoplay ---
+		function checkIndex() {
+			if (currentIndex === 0) {
+				currentIndex = slidesCount;
+				setInitialPosition();
+			} else if (currentIndex === slidesCount + 1) {
+				currentIndex = 1;
+				setInitialPosition();
+			}
+
+			isTransitioning = false; // <-- TAMBAHKAN INI
+		}
+
+		// Ganti fungsi startAutoPlay LAMA dengan INI
+		function startAutoPlay() {
+			stopAutoPlay(); // Pastikan tidak ada loop yang berjalan
+			lastTime = performance.now(); // Set waktu awal
+			animationFrameId = requestAnimationFrame(autoPlayLoop); // Mulai loop
+		}
+
+		// Ganti fungsi stopAutoPlay LAMA dengan INI
+		function stopAutoPlay() {
+			cancelAnimationFrame(animationFrameId); // Hentikan loop
+		}
+
+		// TAMBAHKAN FUNGSI BARU INI
+		function autoPlayLoop(timestamp) {
+			if (isTransitioning) {
+				// <-- TAMBAHKAN KONDISI INI
+				animationFrameId = requestAnimationFrame(autoPlayLoop);
+				return;
+			}
+
+			// Hitung waktu yang telah berlalu sejak frame terakhir
+			const deltaTime = timestamp - lastTime;
+			lastTime = timestamp;
+
+			// Tambahkan waktu yang berlalu ke akumulator
+			timeSinceLastSlide += deltaTime;
+
+			// Jika waktu yang terkumpul sudah melebihi delay, ganti slide
+			if (timeSinceLastSlide >= autoplayDelay) {
+				isTransitioning = true;
+				currentIndex++;
+				track.style.transition = "transform 0.7s ease-in-out";
+				setPositionByIndex();
+				timeSinceLastSlide = 0; // Reset akumulator
+			}
+
+			// Lanjutkan loop ke frame berikutnya
+			animationFrameId = requestAnimationFrame(autoPlayLoop);
+		}
+
+		// --- Attach Event Listeners ---
+		track.addEventListener("mousedown", dragStart);
+		track.addEventListener("touchstart", dragStart, { passive: true });
+		track.addEventListener("mouseup", dragEnd);
+		track.addEventListener("mouseleave", dragEnd);
+		track.addEventListener("touchend", dragEnd);
+		track.addEventListener("mousemove", dragMove);
+		track.addEventListener("touchmove", dragMove, { passive: true });
+		track.addEventListener("transitionend", checkIndex);
+
+		window.addEventListener("resize", setInitialPosition);
+
+		startAutoPlay();
+	});
+</script>
