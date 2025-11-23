@@ -1,0 +1,93 @@
+---
+import { Heart, Users, GraduationCap, HandHeart } from "lucide-astro";
+---
+
+<section id="sosial" class="font-sora bg-gradient-to-br from-[#F5F5F5] via-white to-[#F5F5F5] py-16 lg:py-24 overflow-hidden relative scroll-mt-20">
+  <!-- Background decorative elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-[#388E3C]/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#81D4FA]/5 rounded-full blur-3xl -z-10"></div>
+
+  <div class="container mx-auto px-6 md:px-8 max-w-7xl relative z-10">
+    <div class="flex flex-col gap-12">
+      {/* Header Section */}
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#388E3C]/10 rounded-full border border-[#388E3C]/20">
+          <Heart class="w-4 h-4 text-[#388E3C]" />
+          <span class="text-sm font-medium text-[#388E3C] uppercase tracking-wider">Program Sosial</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#388E3C] via-[#81D4FA] to-[#FFD700] bg-clip-text text-transparent leading-tight pb-1">
+          Program Sosial Yayasan Sawiyan
+        </h2>
+        <p class="text-lg text-gray-600">
+          Program-program sosial yang bertujuan untuk membantu dan memberdayakan masyarakat yang membutuhkan
+        </p>
+      </div>
+
+      {/* Program Cards Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            icon: GraduationCap,
+            title: "Program Beasiswa",
+            description: "Memberikan beasiswa untuk siswa berprestasi dan keluarga kurang mampu untuk melanjutkan pendidikan ke jenjang yang lebih tinggi.",
+            color: "#388E3C",
+          },
+          {
+            icon: HandHeart,
+            title: "Bantuan Sosial",
+            description: "Penyaluran bantuan sosial berupa sembako, pakaian, dan kebutuhan pokok lainnya untuk keluarga yang membutuhkan.",
+            color: "#81D4FA",
+          },
+          {
+            icon: Users,
+            title: "Pelatihan Keterampilan",
+            description: "Program pelatihan keterampilan untuk meningkatkan kemampuan dan peluang ekonomi masyarakat, termasuk kerajinan, pertanian, dan wirausaha.",
+            color: "#FFD180",
+          },
+          {
+            icon: Heart,
+            title: "Bantuan Kesehatan",
+            description: "Program bantuan kesehatan gratis berupa pemeriksaan kesehatan, pengobatan, dan penyuluhan kesehatan untuk masyarakat.",
+            color: "#FFD700",
+          },
+          {
+            icon: Users,
+            title: "Pemberdayaan Perempuan",
+            description: "Program khusus untuk memberdayakan perempuan melalui pelatihan, pendampingan, dan dukungan untuk meningkatkan kualitas hidup.",
+            color: "#388E3C",
+          },
+          {
+            icon: HandHeart,
+            title: "Bantuan Lansia",
+            description: "Program bantuan khusus untuk lansia berupa kebutuhan pokok, kesehatan, dan kegiatan sosial untuk meningkatkan kesejahteraan mereka.",
+            color: "#81D4FA",
+          },
+        ].map((program) => {
+          const IconComponent = program.icon;
+          return (
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 p-8 relative overflow-hidden">
+              {/* Decorative gradient accent */}
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r" style={`background: linear-gradient(to right, ${program.color}, ${program.color}80);`}></div>
+              
+              {/* Icon */}
+              <div class="mb-6">
+                <div class="w-16 h-16 rounded-xl flex items-center justify-center" style={`background: linear-gradient(135deg, ${program.color}15, ${program.color}25);`}>
+                  <IconComponent class="w-8 h-8" style={`color: ${program.color};`} />
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#388E3C] transition-colors duration-200">
+                {program.title}
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                {program.description}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+

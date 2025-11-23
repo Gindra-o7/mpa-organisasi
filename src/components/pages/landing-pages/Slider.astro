@@ -9,31 +9,31 @@ export interface Slide {
 	cta_url: string;
 }
 
-// 2. Data slides hardcoded
+// 2. Data slides hardcoded dengan tema kemanusiaan, agama, dan sosial
 const slides: Slide[] = [
 	{
-		gambar: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop",
-		label: "Bergabunglah dengan <span class='text-[#ac1234]'>Generasi Digital</span> Masa Depan",
-		cta_label: "Daftar Sekarang",
-		cta_url: "/pendaftaran"
+		gambar: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&h=1080&fit=crop",
+		label: "Memberi <span class='text-[#FFD700]'>Harapan</span> untuk Mereka yang Membutuhkan",
+		cta_label: "Jadi Relawan",
+		cta_url: "/program"
 	},
 	{
-		gambar: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&h=1080&fit=crop",
-		label: "Fasilitas <span class='text-[#ac1234]'>Terlengkap</span> untuk Mahasiswa Berkualitas",
-		cta_label: "Lihat Fasilitas",
-		cta_url: "/fasilitas"
+		gambar: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop",
+		label: "Program <span class='text-[#81D4FA]'>Kemanusiaan</span> yang Membawa Perubahan",
+		cta_label: "Lihat Kegiatan",
+		cta_url: "/program"
 	},
 	{
-		gambar: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1920&h=1080&fit=crop",
-		label: "Raih <span class='text-[#ac1234]'>Prestasi</span> Bersama Kami",
-		cta_label: "Info Lebih Lanjut",
-		cta_url: "/tentang"
+		gambar: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&h=1080&fit=crop",
+		label: "Menebar <span class='text-[#FFD180]'>Rahmat</span> melalui Kebaikan Bersama",
+		cta_label: "Berbagi Kebaikan",
+		cta_url: "/program"
 	},
 	{
-		gambar: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1920&h=1080&fit=crop",
-		label: "Kampus <span class='text-[#ac1234]'>Terdepan</span> di Kalimantan",
-		cta_label: "Hubungi Kami",
-		cta_url: "/kontak"
+		gambar: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1920&h=1080&fit=crop",
+		label: "Yayasan <span class='text-[#FFD700]'>Sawiyan</span>: Berpijak pada Iman, Bergerak untuk Umat",
+		cta_label: "Pelajari Lebih Lanjut",
+		cta_url: "/profile"
 	}
 ];
 
@@ -43,13 +43,14 @@ const autoplayDelay = 6000;
 
 <div
 	id="carousel-container"
-	class="w-full h-[95svh] md:h-[91svh] relative"
+	class="w-full h-[95svh] md:h-[91svh] relative overflow-hidden"
 	aria-roledescription="carousel"
 >
-	<div class="overflow-hidden w-full h-full">
-		<div id="carousel-track" class="flex h-full cursor-grab">
+	<!-- Background slides container -->
+	<div class="overflow-hidden w-full h-full absolute inset-0">
+		<div id="carousel-track" class="flex h-full">
 			{
-				slides.map((slide: Slide) => (
+				slides.map((slide) => (
 					<div
 						class="carousel-slide w-full h-full flex-shrink-0 relative"
 						role="group"
@@ -61,45 +62,60 @@ const autoplayDelay = 6000;
 							class="w-full absolute h-full object-cover pointer-events-none"
 							loading="lazy"
 						/>
-						<div class="absolute flex flex-col gap-8 justify-center items-center w-full h-full bg-black/50 p-6 md:p-12 font-sora">
-							<span class="flex text-[0.76rem] md:text-base justify-center items-center gap-1 text-white">
-								<ArrowUpRight class="md:w-7 md:h-7 w-5 h-5 text-white" />
-								KAMPUS PALING MODERN DI KALIMANTAN
-							</span>
-
-							<div
-								set:html={slide.label}
-								class="text-white text-2xl md:text-6xl leading-tight text-center font-bold"
-							/>
-
-							<button
-								onclick={`window.location.href='${slide.cta_url}'`}
-								class="md:mt-2 text-sm md:text-base flex justify-center items-center gap-1 text-white md:px-5 md:py-3 px-3 py-1.5 bg-[#ac1234] hover:bg-[#751127] hover:scale-105 active:scale-95 transition-transform duration-150 cursor-pointer"
-							>
-								{slide.cta_label}
-								<ArrowUpRight class="md:w-7 md:h-7 w-5 h-5 text-white" />
-							</button>
-						</div>
+						<!-- Gradient overlay untuk kontras yang lebih baik -->
+						<div class="absolute inset-0 bg-gradient-to-br from-[#388E3C]/80 via-[#388E3C]/70 to-[#1B5E20]/80"></div>
 					</div>
 				))
 			}
 		</div>
 	</div>
+
+	<!-- Fixed content overlay -->
+	<div class="absolute inset-0 flex flex-col gap-4 md:gap-6 justify-center items-start w-full h-full p-6 md:p-12 lg:px-16 xl:px-24 font-sora z-10 max-w-4xl pointer-events-none">
+		<!-- Text container dengan animasi -->
+		<div id="text-container" class="text-left pointer-events-auto">
+			<div
+				id="slide-text"
+				set:html={slides[0].label}
+				class="text-white text-2xl md:text-4xl lg:text-5xl leading-tight text-left font-bold drop-shadow-lg"
+			></div>
+		</div>
+
+		<!-- Single CTA Button -->
+		<button
+			onclick="window.location.href='/program'"
+			class="flex items-center gap-2 text-white text-sm md:text-base font-medium md:px-6 md:py-3 px-4 py-2 border-2 border-white hover:bg-white/10 active:scale-95 transition-all duration-200 cursor-pointer rounded-lg pointer-events-auto"
+		>
+			Lihat Program
+			<ArrowUpRight class="md:w-5 md:h-5 w-4 h-4" />
+		</button>
+	</div>
 </div>
 
 <style>
-	/* Mencegah pemilihan teks yang tidak diinginkan saat menggeser */
-	#carousel-track.dragging {
-		user-select: none;
-		-webkit-user-select: none; /* Safari */
+	/* Smooth transition untuk background slides */
+	#carousel-track {
+		transition: transform 0.7s ease-in-out;
+	}
+
+	/* Animasi untuk text */
+	#slide-text {
+		transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 	}
 </style>
 
 <script define:vars={{ autoplayDelay }}>
-	// 6. Semua logika JavaScript dikonversi ke TypeScript
+	const slidesData = [
+		"Memberi <span class='text-[#FFD700]'>Harapan</span> untuk Mereka yang Membutuhkan",
+		"Program <span class='text-[#81D4FA]'>Kemanusiaan</span> yang Membawa Perubahan",
+		"Menebar <span class='text-[#FFD180]'>Rahmat</span> melalui Kebaikan Bersama",
+		"Yayasan <span class='text-[#FFD700]'>Sawiyan</span>: Berpijak pada Iman, Bergerak untuk Umat"
+	];
+
 	document.addEventListener("DOMContentLoaded", () => {
 		const track = document.getElementById("carousel-track");
-		if (!track) return;
+		const textElement = document.getElementById("slide-text");
+		if (!track || !textElement) return;
 
 		const slides = Array.from(track.querySelectorAll(".carousel-slide"));
 		if (slides.length === 0) return;
@@ -111,37 +127,16 @@ const autoplayDelay = 6000;
 		track.appendChild(firstClone);
 		track.prepend(lastClone);
 
-		const allSlides = Array.from(track.querySelectorAll(".carousel-slide"));
-
-		function stopAutoPlay() {
-			clearInterval(autoPlayInterval);
-		}
-
-		document.addEventListener("visibilitychange", () => {
-			if (document.hidden) {
-				stopAutoPlay(); // Hentikan jika tab tidak aktif
-			} else {
-				startAutoPlay(); // Mulai lagi jika tab kembali aktif
-			}
-		});
-
 		// --- Inisialisasi State ---
 		let currentIndex = 1;
-		let isDragging = false;
-		let startPos = 0;
-		let currentTranslate = 0;
-		let prevTranslate = 0;
-		let animationFrameId; // Untuk menyimpan ID dari rAF
-		let lastTime; // Untuk melacak waktu frame terakhir
-		let timeSinceLastSlide = 0; // Akumulator waktu
-
-		// --- Inisialisasi State ---
-		let isTransitioning = false; // <-- TAMBAHKAN INI
-		// ... sisa variabel lainnya
+		let animationFrameId;
+		let lastTime = performance.now();
+		let timeSinceLastSlide = 0;
+		let isTransitioning = false;
 
 		const setPositionByIndex = () => {
 			const slideWidth = slides[0].offsetWidth;
-			currentTranslate = -currentIndex * slideWidth;
+			const currentTranslate = -currentIndex * slideWidth;
 			track.style.transform = `translateX(${currentTranslate}px)`;
 		};
 
@@ -152,79 +147,25 @@ const autoplayDelay = 6000;
 
 		setInitialPosition();
 
-		// --- Fungsi Animasi ---
-		const animation = () => {
-			track.style.transform = `translateX(${currentTranslate}px)`;
-			if (isDragging) {
-				requestAnimationFrame(animation);
-			}
+		// Update text dengan animasi
+		const updateText = (index) => {
+			const actualIndex = index === 0 ? slidesCount - 1 : (index === slidesCount + 1 ? 0 : index - 1);
+			const text = slidesData[actualIndex];
+			
+			// Fade out
+			textElement.style.opacity = "0";
+			textElement.style.transform = "translateY(20px)";
+			
+			setTimeout(() => {
+				textElement.innerHTML = text;
+				// Fade in
+				textElement.style.opacity = "1";
+				textElement.style.transform = "translateY(0)";
+			}, 300);
 		};
 
-		// --- Event Handlers (Drag/Swipe) ---
-		function getPositionX(event) {
-			return event.type.includes("mouse")
-				? event.pageX
-				: event.touches[0].clientX;
-		}
-
-		// GANTI SELURUH FUNGSI dragStart ANDA DENGAN INI:
-		function dragStart(event) {
-			// 1. Hentikan autoplay, ini selalu penting
-			stopAutoPlay();
-
-			// 2. Jika transisi sedang berjalan, kita interupsi!
-			if (isTransitioning) {
-				// Ambil posisi translateX saat ini dari style CSS
-				const style = window.getComputedStyle(track);
-				const matrix = new DOMMatrixReadOnly(style.transform);
-				currentTranslate = matrix.m41; // m41 adalah nilai translateX
-
-				// Hentikan animasi CSS dan update posisi transform
-				track.style.transition = "none";
-				track.style.transform = `translateX(${currentTranslate}px)`;
-
-				// Buka kunci karena sekarang kontrol di tangan pengguna
-				isTransitioning = false;
-			}
-
-			// 3. Lanjutkan dengan logika drag seperti biasa
-			isDragging = true;
-			startPos = getPositionX(event);
-			prevTranslate = currentTranslate; // Penting: update prevTranslate ke posisi saat ini
-			track.classList.add("cursor-grabbing", "dragging");
-		}
-
-		function dragMove(event) {
-			if (isDragging) {
-				const currentPosition = getPositionX(event);
-				currentTranslate = prevTranslate + currentPosition - startPos;
-				track.style.transform = `translateX(${currentTranslate}px)`;
-			}
-		}
-
-		function dragEnd() {
-			if (!isDragging) return;
-			isDragging = false;
-			track.classList.remove("cursor-grabbing", "dragging");
-
-			const movedBy = currentTranslate - prevTranslate;
-			const slideWidth = slides[0].offsetWidth;
-
-			if (movedBy < -slideWidth * 0.2 && currentIndex < slidesCount + 1) {
-				currentIndex += 1;
-			} else if (movedBy > slideWidth * 0.2 && currentIndex > 0) {
-				currentIndex -= 1;
-			}
-
-			isTransitioning = true; // <-- TAMBAHKAN INI
-
-			track.style.transition = "transform 0.7s ease-in-out";
-			setPositionByIndex();
-			startAutoPlay();
-		}
-
 		// --- Logika Looping & Autoplay ---
-		function checkIndex() {
+		const checkIndex = () => {
 			if (currentIndex === 0) {
 				currentIndex = slidesCount;
 				setInitialPosition();
@@ -232,61 +173,59 @@ const autoplayDelay = 6000;
 				currentIndex = 1;
 				setInitialPosition();
 			}
+			
+			// Update text saat slide berubah
+			updateText(currentIndex);
+			isTransitioning = false;
+		};
 
-			isTransitioning = false; // <-- TAMBAHKAN INI
-		}
+		const startAutoPlay = () => {
+			stopAutoPlay();
+			lastTime = performance.now();
+			animationFrameId = requestAnimationFrame(autoPlayLoop);
+		};
 
-		// Ganti fungsi startAutoPlay LAMA dengan INI
-		function startAutoPlay() {
-			stopAutoPlay(); // Pastikan tidak ada loop yang berjalan
-			lastTime = performance.now(); // Set waktu awal
-			animationFrameId = requestAnimationFrame(autoPlayLoop); // Mulai loop
-		}
+		const stopAutoPlay = () => {
+			cancelAnimationFrame(animationFrameId);
+		};
 
-		// Ganti fungsi stopAutoPlay LAMA dengan INI
-		function stopAutoPlay() {
-			cancelAnimationFrame(animationFrameId); // Hentikan loop
-		}
-
-		// TAMBAHKAN FUNGSI BARU INI
-		function autoPlayLoop(timestamp) {
+		const autoPlayLoop = (timestamp) => {
 			if (isTransitioning) {
-				// <-- TAMBAHKAN KONDISI INI
 				animationFrameId = requestAnimationFrame(autoPlayLoop);
 				return;
 			}
 
-			// Hitung waktu yang telah berlalu sejak frame terakhir
 			const deltaTime = timestamp - lastTime;
 			lastTime = timestamp;
-
-			// Tambahkan waktu yang berlalu ke akumulator
 			timeSinceLastSlide += deltaTime;
 
-			// Jika waktu yang terkumpul sudah melebihi delay, ganti slide
 			if (timeSinceLastSlide >= autoplayDelay) {
 				isTransitioning = true;
 				currentIndex++;
 				track.style.transition = "transform 0.7s ease-in-out";
 				setPositionByIndex();
-				timeSinceLastSlide = 0; // Reset akumulator
+				timeSinceLastSlide = 0;
 			}
 
-			// Lanjutkan loop ke frame berikutnya
 			animationFrameId = requestAnimationFrame(autoPlayLoop);
-		}
+		};
 
-		// --- Attach Event Listeners ---
-		track.addEventListener("mousedown", dragStart);
-		track.addEventListener("touchstart", dragStart, { passive: true });
-		track.addEventListener("mouseup", dragEnd);
-		track.addEventListener("mouseleave", dragEnd);
-		track.addEventListener("touchend", dragEnd);
-		track.addEventListener("mousemove", dragMove);
-		track.addEventListener("touchmove", dragMove, { passive: true });
+		// Handle visibility change
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				stopAutoPlay();
+			} else {
+				startAutoPlay();
+			}
+		});
+
+		// Attach event listeners
 		track.addEventListener("transitionend", checkIndex);
-
 		window.addEventListener("resize", setInitialPosition);
+
+		// Initialize text animation
+		textElement.style.transition = "opacity 0.3s ease-out, transform 0.3s ease-out";
+		textElement.style.opacity = "1";
 
 		startAutoPlay();
 	});

@@ -1,22 +1,111 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
-@import "@fontsource-variable/sora";
+@import "@fontsource-variable/merriweather-sans";
 @theme {
-	--font-sora: "Sora Variable", "sans-serif";
+  --font-merriweather-sans: "Merriweather Sans Variable", "sans-serif";
 }
 
-.prose img {
-	width: 100%;
-	object-fit: cover;
-	border-radius: 0.5rem;
-    max-height: 550px;
+* {
+  box-sizing: border-box;
 }
 
-.prose {
-    text-align: justify;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
-.prose h1, h2, h3, h4, h5, h6 {
-	text-align: start;
+::selection {
+  background-color: #388e3c;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #388e3c;
+  color: #ffffff;
+}
+
+[class*="bg-[#388E3C"]::selection,
+[style*="background-color: #388E3C"]::selection,
+[style*="background-color:#388E3C"]::selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+[class*="bg-[#388E3C"]::-moz-selection,
+[style*="background-color: #388E3C"]::-moz-selection,
+[style*="background-color:#388E3C"]::-moz-selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+nav.bg-\[#388E3C\],
+footer.bg-\[#388E3C\],
+section[class*="bg-[#388E3C"] {
+  --selection-bg: #ffd700;
+  --selection-color: #1a1a1a;
+}
+
+nav.bg-\[#388E3C\] *::selection,
+footer.bg-\[#388E3C\] *::selection,
+section[class*="bg-[#388E3C"] *::selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+nav.bg-\[#388E3C\] *::-moz-selection,
+footer.bg-\[#388E3C\] *::-moz-selection,
+section[class*="bg-[#388E3C"] *::-moz-selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+[class*="bg-[#388E3C"] *::selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+[class*="bg-[#388E3C"] *::-moz-selection {
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #388e3c 0%, #1b5e20 100%);
+  border-radius: 10px;
+  border: 2px solid #f5f5f5;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4caf50 0%, #388e3c 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 100%);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #388e3c #f5f5f5;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

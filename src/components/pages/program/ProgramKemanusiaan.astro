@@ -1,0 +1,93 @@
+---
+import { HandHeart, AlertCircle, Home, Shield } from "lucide-astro";
+---
+
+<section id="kemanusiaan" class="font-sora bg-gradient-to-br from-white via-[#F5F5F5] to-white py-16 lg:py-24 overflow-hidden relative scroll-mt-20">
+  <!-- Background decorative elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-[#81D4FA]/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#FFD180]/5 rounded-full blur-3xl -z-10"></div>
+
+  <div class="container mx-auto px-6 md:px-8 max-w-7xl relative z-10">
+    <div class="flex flex-col gap-12">
+      {/* Header Section */}
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#81D4FA]/10 rounded-full border border-[#81D4FA]/20">
+          <HandHeart class="w-4 h-4 text-[#81D4FA]" />
+          <span class="text-sm font-medium text-[#81D4FA] uppercase tracking-wider">Program Kemanusiaan</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#388E3C] via-[#81D4FA] to-[#FFD700] bg-clip-text text-transparent leading-tight pb-1">
+          Program Kemanusiaan Yayasan Sawiyan
+        </h2>
+        <p class="text-lg text-gray-600">
+          Program-program kemanusiaan untuk membantu masyarakat yang terdampak bencana dan membutuhkan bantuan darurat
+        </p>
+      </div>
+
+      {/* Program Cards Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            icon: AlertCircle,
+            title: "Bantuan Bencana Alam",
+            description: "Penyaluran bantuan cepat untuk korban bencana alam berupa makanan, pakaian, tempat tinggal sementara, dan kebutuhan darurat lainnya.",
+            color: "#81D4FA",
+          },
+          {
+            icon: Home,
+            title: "Rumah Layak Huni",
+            description: "Program pembangunan dan renovasi rumah untuk keluarga yang tidak memiliki tempat tinggal layak atau rumahnya rusak.",
+            color: "#388E3C",
+          },
+          {
+            icon: HandHeart,
+            title: "Bantuan Medis Darurat",
+            description: "Program bantuan medis darurat untuk korban bencana dan masyarakat yang membutuhkan perawatan kesehatan mendesak.",
+            color: "#FFD180",
+          },
+          {
+            icon: Shield,
+            title: "Program Perlindungan Anak",
+            description: "Program perlindungan dan pemenuhan hak-hak anak, termasuk bantuan pendidikan, kesehatan, dan kebutuhan dasar anak-anak terlantar.",
+            color: "#FFD700",
+          },
+          {
+            icon: HandHeart,
+            title: "Bantuan Pengungsi",
+            description: "Program bantuan untuk pengungsi dan masyarakat yang terpaksa mengungsi akibat konflik atau bencana, termasuk kebutuhan dasar dan dukungan psikologis.",
+            color: "#81D4FA",
+          },
+          {
+            icon: AlertCircle,
+            title: "Rapid Response Team",
+            description: "Tim respons cepat yang siap dikerahkan untuk memberikan bantuan darurat di lokasi bencana atau situasi darurat lainnya.",
+            color: "#388E3C",
+          },
+        ].map((program) => {
+          const IconComponent = program.icon;
+          return (
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 p-8 relative overflow-hidden">
+              {/* Decorative gradient accent */}
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r" style={`background: linear-gradient(to right, ${program.color}, ${program.color}80);`}></div>
+              
+              {/* Icon */}
+              <div class="mb-6">
+                <div class="w-16 h-16 rounded-xl flex items-center justify-center" style={`background: linear-gradient(135deg, ${program.color}15, ${program.color}25);`}>
+                  <IconComponent class="w-8 h-8" style={`color: ${program.color};`} />
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#81D4FA] transition-colors duration-200">
+                {program.title}
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                {program.description}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
