@@ -2,6 +2,7 @@
 import Navbar from "../components/globals/Navbar.astro";
 import Footer from "../components/globals/Footer.astro";
 import Preloader from "../components/globals/Preloader.astro";
+import Translate from "../components/globals/Translate.astro";
 
 import "../styles/globals.css";
 
@@ -16,7 +17,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta name="generator" content={Astro.generator} />
-    <title>{title} - Sawiyan: Bersama Membangun Kebaikan</title>
+    <title>{title} - Organisasi: Bersama Kita</title>
   </head>
   <body class="bg-[#F5F5F5] overflow-x-hidden">
     <Preloader />
@@ -26,6 +27,7 @@ const { title } = Astro.props;
       <slot />
     </main>
 
+    <Translate />
     <Footer />
   </body>
 </html>

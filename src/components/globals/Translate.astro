@@ -1,0 +1,189 @@
+---
+import indonesiaFlag from "../../assets/indonesia.svg";
+import ukFlag from "../../assets/united-kingdom.svg";
+---
+
+<div class="fixed bottom-6 left-6 z-[99] group" id="language-toggle">
+  <!-- Toggle Button -->
+  <button
+    id="lang-toggle-btn"
+    class="w-14 h-14 rounded-full bg-gradient-to-br from-[#4A148C] to-[#6A1B9A] shadow-lg hover:shadow-xl transition-all duration-300 ease-out flex items-center justify-center group-hover:scale-110 active:scale-95 border-2 border-white/20 backdrop-blur-sm"
+    aria-label="Change Language"
+  >
+    <img id="current-flag" src={indonesiaFlag.src} alt="Current Language" class="w-7 h-7 rounded-full object-cover transition-transform duration-300 group-hover:rotate-12" />
+  </button>
+
+  <!-- Language Options -->
+  <div id="lang-options" class="absolute bottom-16 left-0 bg-white rounded-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-300 ease-out border-2 border-[#E1BEE7]/30">
+    <div class="flex flex-col min-w-[160px]">
+      <!-- Indonesian Option -->
+      <button data-lang="id" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-[#E1BEE7]/20 transition-all duration-200 border-b border-gray-100 last:border-b-0 group/item">
+        <img src={indonesiaFlag.src} alt="Bahasa Indonesia" class="w-6 h-6 rounded-full object-cover" />
+        <div class="flex flex-col items-start">
+          <span class="text-sm font-semibold text-[#4A148C] group-hover/item:text-[#00BFA5] transition-colors">Indonesia</span>
+          <span class="text-xs text-gray-500">Bahasa</span>
+        </div>
+      </button>
+
+      <!-- English Option -->
+      <button data-lang="en" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-[#E1BEE7]/20 transition-all duration-200 group/item">
+        <img src={ukFlag.src} alt="English" class="w-6 h-6 rounded-full object-cover" />
+        <div class="flex flex-col items-start">
+          <span class="text-sm font-semibold text-[#4A148C] group-hover/item:text-[#00BFA5] transition-colors">English</span>
+          <span class="text-xs text-gray-500">Language</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Active Language Indicator Badge -->
+  <div id="lang-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-[#00BFA5] to-[#00A896] rounded-full border-2 border-white shadow-md flex items-center justify-center">
+    <span id="badge-text" class="text-[10px] font-bold text-white">ID</span>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById("lang-toggle-btn");
+  const currentFlag = document.getElementById("current-flag") as HTMLImageElement;
+  const badgeText = document.getElementById("badge-text");
+  const langOptions = document.querySelectorAll(".lang-option");
+  const langOptionsContainer = document.getElementById("lang-options");
+  const languageToggle = document.getElementById("language-toggle");
+
+  // Get current language from localStorage or default to 'id'
+  let currentLang = localStorage.getItem("language") || "id";
+  let isMenuOpen = false;
+
+  // Flag sources
+  const flags = {
+    id: "/src/assets/indonesia.svg",
+    en: "/src/assets/united-kingdom.svg",
+  };
+
+  // Toggle menu visibility
+  const toggleMenu = () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      langOptionsContainer!.classList.remove("opacity-0", "invisible", "translate-y-2");
+      langOptionsContainer!.classList.add("opacity-100", "visible", "translate-y-0");
+    } else {
+      langOptionsContainer!.classList.remove("opacity-100", "visible", "translate-y-0");
+      langOptionsContainer!.classList.add("opacity-0", "invisible", "translate-y-2");
+    }
+  };
+
+  // Close menu
+  const closeMenu = () => {
+    isMenuOpen = false;
+    langOptionsContainer!.classList.remove("opacity-100", "visible", "translate-y-0");
+    langOptionsContainer!.classList.add("opacity-0", "invisible", "translate-y-2");
+  };
+
+  // Update UI based on current language
+  const updateLanguageUI = (lang: string) => {
+    currentLang = lang;
+    localStorage.setItem("language", lang);
+
+    // Update flag
+    if (lang === "id") {
+      currentFlag.src = flags.id;
+      badgeText!.textContent = "ID";
+    } else {
+      currentFlag.src = flags.en;
+      badgeText!.textContent = "EN";
+    }
+
+    // Add active state to selected option
+    langOptions.forEach((option) => {
+      const btn = option as HTMLButtonElement;
+      if (btn.dataset.lang === lang) {
+        btn.classList.add("bg-[#E1BEE7]/30");
+      } else {
+        btn.classList.remove("bg-[#E1BEE7]/30");
+      }
+    });
+
+    // Dispatch custom event for language change
+    window.dispatchEvent(new CustomEvent("languageChanged", { detail: { language: lang } }));
+  };
+
+  // Initialize with current language
+  updateLanguageUI(currentLang);
+
+  // Toggle button click handler
+  toggleBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Handle language selection
+  langOptions.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const btn = option as HTMLButtonElement;
+      const selectedLang = btn.dataset.lang;
+      if (selectedLang) {
+        updateLanguageUI(selectedLang);
+        closeMenu();
+
+        // Optional: Reload page to apply language changes
+        // window.location.reload();
+      }
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!languageToggle?.contains(target)) {
+      closeMenu();
+    }
+  });
+
+  // Hover effects for desktop
+  if (window.matchMedia("(hover: hover)").matches) {
+    languageToggle?.addEventListener("mouseenter", () => {
+      if (!isMenuOpen) {
+        langOptionsContainer!.classList.remove("opacity-0", "invisible", "translate-y-2");
+        langOptionsContainer!.classList.add("opacity-100", "visible", "translate-y-0");
+      }
+    });
+
+    languageToggle?.addEventListener("mouseleave", () => {
+      if (!isMenuOpen) {
+        langOptionsContainer!.classList.remove("opacity-100", "visible", "translate-y-0");
+        langOptionsContainer!.classList.add("opacity-0", "invisible", "translate-y-2");
+      }
+    });
+  }
+
+  // Keyboard accessibility
+  toggleBtn?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMenu();
+    }
+    if (e.key === "Escape") {
+      closeMenu();
+    }
+  });
+</script>
+
+<style>
+  /* Smooth animations */
+  @keyframes pulse-subtle {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (hover: hover) {
+    #lang-toggle-btn:hover {
+      animation: pulse-subtle 2s infinite;
+    }
+  }
+</style>

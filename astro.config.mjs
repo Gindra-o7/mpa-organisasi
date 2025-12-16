@@ -23,5 +23,5 @@ export default defineConfig({
     port: 4321
   },
 
-	base: `${import.meta.env.BASE_URL}`
+	base: process.env.BASE_URL
 });
