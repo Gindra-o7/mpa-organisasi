@@ -1,9 +1,9 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
-@import "@fontsource-variable/merriweather-sans";
+@import "@fontsource-variable/fira-sans-extra-condensed";
 @theme {
-  --font-merriweather-sans: "Merriweather Sans Variable", "sans-serif";
+  --font-fira-sans: "Fira Sans Extra Condensed", "sans-serif";
 }
 
 * {
