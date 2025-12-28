@@ -17,11 +17,11 @@ const currentPath = Astro.url.pathname;
 ---
 
 <div class="w-full fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-out px-0 py-0" id="navbar-wrapper">
-  <nav class="w-full flex justify-between items-center px-6 2xl:px-8 py-3 bg-[#4A148C] shadow-lg relative z-[100] transition-all duration-500 ease-out rounded-none" id="navbar">
+  <nav class="w-full flex justify-between items-center px-6 2xl:px-8 py-3 bg-primary shadow-lg relative z-[100] transition-all duration-500 ease-out rounded-none" id="navbar">
     <div class="w-full max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ease-out">
       <a href="/" class="cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-out active:opacity-70 flex-shrink-0">
         <span class="text-xl md:text-2xl font-bold tracking-wider">
-          <span class="bg-gradient-to-r from-[#00BFA5] via-[#E1BEE7] to-[#00BFA5] bg-clip-text text-transparent"> ORGANISASI </span>
+          <span class="bg-lavender-light from-accent via-lavender to-accent bg-clip-text text-transparent"> ORGANISASI </span>
         </span>
       </a>
 
@@ -32,12 +32,12 @@ const currentPath = Astro.url.pathname;
             return (
               <a href={item.href} class={`relative text-base transition-colors duration-300 ease-out cursor-pointer group py-1 ${isActive ? "active" : ""}`}>
                 <span class="relative z-10">{item.name}</span>
-                <span class={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent to-accent-light transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
               </a>
             );
           })
         }
-        <a href="/daftar" class="bg-[#00BFA5] hover:bg-[#008F7A] text-white px-6 py-2.5 rounded-md font-semibold text-base transition-all duration-300 ease-out shadow-md hover:shadow-lg hover:scale-105 active:scale-95"> Daftar Sekarang </a>
+        <a href="/daftar" class="bg-accent hover:bg-accent-dark text-white px-6 py-2.5 rounded-md font-semibold text-base transition-all duration-300 ease-out shadow-md hover:shadow-lg hover:scale-105 active:scale-95"> Daftar Sekarang </a>
       </div>
 
       <div class="xl:hidden flex gap-1 md:gap-2 justify-center items-center">
@@ -50,9 +50,9 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 
-  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#4A148C] z-[100] transform -translate-y-full transition-transform duration-500 ease-in-out xl:hidden overflow-y-auto">
+  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-primary z-[100] transform -translate-y-full transition-transform duration-500 ease-in-out xl:hidden overflow-y-auto">
     <div class="flex justify-end px-6 pt-4">
-      <button id="close-menu-button" class="text-white focus:outline-none transition-transform duration-300 ease-out active:scale-90 hover:text-[#00BFA5]">
+      <button id="close-menu-button" class="text-white focus:outline-none transition-transform duration-300 ease-out active:scale-90 hover:text-accent">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -63,14 +63,14 @@ const currentPath = Astro.url.pathname;
         {
           menuItems.map((item) => (
             <div class="border-b border-gray-100/30 px-7 py-4 transition-colors duration-200 hover:bg-white/5">
-              <a href={item.href} class="block w-full text-[1rem] hover:text-[#00BFA5] transition-colors duration-200 ease-out">
+              <a href={item.href} class="block w-full text-[1rem] hover:text-accent transition-colors duration-200 ease-out">
                 {item.name}
               </a>
             </div>
           ))
         }
         <div class="px-7 py-6">
-          <a href="/daftar" class="block w-full bg-[#00BFA5] hover:bg-[#008F7A] text-white px-6 py-3 rounded-md font-semibold text-center transition-all duration-200 ease-out shadow-md"> Daftar Sekarang </a>
+          <a href="/daftar" class="block w-full bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-md font-semibold text-center transition-all duration-200 ease-out shadow-md"> Daftar Sekarang </a>
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@ const currentPath = Astro.url.pathname;
         navbarWrapper.style.paddingBottom = "0px";
         navbarWrapper.style.justifyContent = "stretch";
 
-        navbar.style.backgroundColor = "rgb(74, 20, 140)";
+        navbar.style.backgroundColor = "var(--color-primary)";
         navbar.style.backdropFilter = "none";
         navbar.style.borderRadius = "0px";
         navbar.style.border = "none";

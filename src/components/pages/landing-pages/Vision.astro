@@ -3,19 +3,19 @@ import { Eye, Zap } from "@lucide/astro";
 
 ---
 
-<section class="relative py-20 overflow-hidden bg-gradient-to-br from-white via-[#E1BEE7]/30 to-white">
+<section class="relative py-20 overflow-hidden bg-lavender/10">
   <!-- Animated Background Elements -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-[#00BFA5]/10 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#4A148C]/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse delay-700"></div>
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
     <!-- Section Header -->
     <div class="text-center mb-16 animate-fade-in">
-      <h2 class="text-5xl font-bold text-[#4A148C] mb-4 relative inline-block">
+      <h2 class="text-5xl font-bold text-primary mb-4 relative inline-block">
         Visi & Misi Kami
-        <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#4A148C] via-[#00BFA5] to-[#4A148C] rounded-full"></div>
+        <div class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></div>
       </h2>
       <p class="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">
         Membangun masa depan yang lebih baik melalui inovasi dan dedikasi
@@ -24,11 +24,11 @@ import { Eye, Zap } from "@lucide/astro";
 
     <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
       <!-- Vision Card -->
-      <div class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#E1BEE7] hover:scale-105 animate-slide-in-left">
-        <div class="bg-gradient-to-br from-[#4A148C] to-[#6A1B9A] p-8 relative">
+      <div class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-lavender hover:scale-105 animate-slide-in-left">
+        <div class="bg-primary p-8 relative">
           <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div class="relative z-10">
-            <div class="w-16 h-16 bg-[#00BFA5] rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
+            <div class="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
               <Eye class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-3xl font-bold text-white mb-2">Visi</h3>
@@ -42,11 +42,11 @@ import { Eye, Zap } from "@lucide/astro";
       </div>
 
       <!-- Mission Card -->
-      <div class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#E1BEE7] hover:scale-105 animate-slide-in-right">
-        <div class="bg-gradient-to-br from-[#00BFA5] to-[#00897B] p-8 relative">
+      <div class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-lavender hover:scale-105 animate-slide-in-right">
+        <div class="bg-accent p-8 relative">
           <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div class="relative z-10">
-            <div class="w-16 h-16 bg-[#4A148C] rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
+            <div class="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
               <Zap class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-3xl font-bold text-white mb-2">Misi</h3>
@@ -55,7 +55,7 @@ import { Eye, Zap } from "@lucide/astro";
         <div class="p-8">
           <ul class="space-y-4">
             <li class="flex items-start group/item">
-              <div class="w-6 h-6 rounded-full bg-[#00BFA5] flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-full bg-accent flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -63,7 +63,7 @@ import { Eye, Zap } from "@lucide/astro";
               <span class="text-gray-700">Memberikan layanan berkualitas tinggi dengan fokus pada kepuasan pelanggan</span>
             </li>
             <li class="flex items-start group/item">
-              <div class="w-6 h-6 rounded-full bg-[#00BFA5] flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-full bg-accent flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -71,7 +71,7 @@ import { Eye, Zap } from "@lucide/astro";
               <span class="text-gray-700">Mengembangkan inovasi berkelanjutan yang ramah lingkungan</span>
             </li>
             <li class="flex items-start group/item">
-              <div class="w-6 h-6 rounded-full bg-[#00BFA5] flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-full bg-accent flex items-center justify-center mr-3 mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>

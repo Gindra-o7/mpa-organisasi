@@ -31,24 +31,24 @@ const newsItems = [
 ];
 ---
 
-<section class="relative py-20 overflow-hidden bg-gradient-to-br from-[#E1BEE7]/20 via-white to-[#E1BEE7]/20">
+<section class="relative py-20 overflow-hidden bg-lavender/10">
   <!-- Animated Background Elements -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-96 h-96 bg-[#4A148C]/5 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#00BFA5]/5 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float-delayed"></div>
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
     <!-- Section Header -->
     <div class="text-center mb-16 animate-fade-in">
       <div class="inline-block mb-4">
-        <span class="px-4 py-2 bg-gradient-to-r from-[#4A148C]/10 to-[#00BFA5]/10 text-[#4A148C] rounded-full text-sm font-semibold border border-[#E1BEE7]">
+        <span class="px-4 py-2 bg-lavender/20 text-primary rounded-full text-sm font-semibold border border-lavender">
           📰 Berita & Kabar Terkini
         </span>
       </div>
-      <h2 class="text-5xl font-bold text-[#4A148C] mb-4 relative inline-block">
+      <h2 class="text-5xl font-bold text-primary mb-4 relative inline-block">
         Berita Terbaru
-        <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#4A148C] via-[#00BFA5] to-[#4A148C] rounded-full"></div>
+        <div class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></div>
       </h2>
       <p class="text-gray-600 text-lg mt-6 max-w-3xl mx-auto">
         Dapatkan informasi terkini seputar regulasi, event, dan perkembangan pelindungan data di Indonesia
@@ -59,7 +59,7 @@ const newsItems = [
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
       {newsItems.map((news, index) => (
         <article 
-          class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#E1BEE7] hover:scale-105 animate-slide-up"
+          class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-lavender hover:scale-105 animate-slide-up"
           style={`animation-delay: ${index * 150}ms`}
         >
           <!-- Image -->
@@ -69,28 +69,28 @@ const newsItems = [
               alt={news.title}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#4A148C]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-primary/30"></div>
             
             <!-- Category Badge -->
             <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-[#00BFA5] text-white text-xs font-semibold rounded-full">
+              <span class="px-3 py-1 bg-accent text-white text-xs font-semibold rounded-full">
                 {news.category}
               </span>
             </div>
 
             <!-- Date Badge -->
             <div class="absolute bottom-4 right-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-              <svg class="w-4 h-4 text-[#4A148C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
-              <span class="text-xs font-medium text-[#4A148C]">{news.date}</span>
+              <span class="text-xs font-medium text-primary">{news.date}</span>
             </div>
           </div>
 
           <!-- Content -->
           <div class="p-6">
             <!-- Title -->
-            <h3 class="text-xl font-bold text-[#4A148C] mb-3 line-clamp-2 group-hover:text-[#00BFA5] transition-colors">
+            <h3 class="text-xl font-bold text-primary mb-3 line-clamp-2 group-hover:text-accent transition-colors">
               {news.title}
             </h3>
 
@@ -100,9 +100,9 @@ const newsItems = [
             </p>
 
             <!-- Meta Info -->
-            <div class="flex items-center justify-between pt-4 border-t border-[#E1BEE7]">
+            <div class="flex items-center justify-between pt-4 border-t border-lavender">
               <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#4A148C] to-[#6A1B9A] flex items-center justify-center">
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                   <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                   </svg>
@@ -113,7 +113,7 @@ const newsItems = [
               </div>
 
               <!-- Read More Link -->
-              <a href={`/berita/${news.id}`} class="flex items-center gap-1 text-[#00BFA5] font-semibold text-sm group-hover:gap-2 transition-all duration-300">
+              <a href={`/berita/${news.id}`} class="flex items-center gap-1 text-accent font-semibold text-sm group-hover:gap-2 transition-all duration-300">
                 <span>Baca</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -129,7 +129,7 @@ const newsItems = [
     <div class="text-center animate-fade-in-up" style="animation-delay: 600ms">
       <a 
         href="/berita" 
-        class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4A148C] to-[#6A1B9A] text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
+        class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
       >
         <span>Lihat Semua Berita</span>
         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

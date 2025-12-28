@@ -60,8 +60,8 @@ const slidesData = slides.map(slide => slide.label);
 							class="w-full absolute h-full object-cover pointer-events-none"
 							loading="lazy"
 						/>
-						<!-- Gradient overlay untuk kontras yang lebih baik -->
-						<div class="absolute inset-0 bg-gradient-to-br from-[#4A148C]/80 via-[#6A1B9A]/70 to-[#4A148C]/80"></div>
+						<!-- Overlay untuk kontras yang lebih baik -->
+						<div class="absolute inset-0 bg-primary/80"></div>
 					</div>
 				))
 			}
@@ -82,7 +82,7 @@ const slidesData = slides.map(slide => slide.label);
 		<!-- Single CTA Button -->
 		<button
 			onclick="window.location.href='/program'"
-			class="flex items-center gap-2 text-white text-sm md:text-base font-medium md:px-6 md:py-3 px-4 py-2 border-2 border-[#00BFA5] bg-[#00BFA5] hover:bg-[#00897B] hover:border-[#00897B] active:scale-95 transition-all duration-200 cursor-pointer rounded-lg pointer-events-auto shadow-lg"
+			class="flex items-center gap-2 text-white text-sm md:text-base font-medium md:px-6 md:py-3 px-4 py-2 border-2 border-accent bg-accent hover:bg-accent-dark hover:border-accent-dark active:scale-95 transition-all duration-200 cursor-pointer rounded-lg pointer-events-auto shadow-lg"
 		>
 			Selengkapnya
 			<ArrowUpRight class="md:w-5 md:h-5 w-4 h-4" />
@@ -92,14 +92,14 @@ const slidesData = slides.map(slide => slide.label);
 	<!-- Navigation Buttons -->
 	<button
 		id="prev-btn"
-		class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-[#4A148C]/80 hover:bg-[#4A148C] text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
+		class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-primary/80 hover:bg-primary text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
 		aria-label="Previous slide"
 	>
 		<ArrowLeft class="h-5 w-5 md:h-6 md:w-6" />
 	</button>
 	<button
 		id="next-btn"
-		class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-[#4A148C]/80 hover:bg-[#4A148C] text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
+		class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-primary/80 hover:bg-primary text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
 		aria-label="Next slide"
 	>
 		<ArrowRight class="h-5 w-5 md:h-6 md:w-6" />

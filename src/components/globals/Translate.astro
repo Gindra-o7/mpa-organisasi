@@ -7,29 +7,29 @@ import ukFlag from "../../assets/united-kingdom.svg";
   <!-- Toggle Button -->
   <button
     id="lang-toggle-btn"
-    class="w-14 h-14 rounded-full bg-gradient-to-br from-[#4A148C] to-[#6A1B9A] shadow-lg hover:shadow-xl transition-all duration-300 ease-out flex items-center justify-center group-hover:scale-110 active:scale-95 border-2 border-white/20 backdrop-blur-sm"
+    class="w-14 h-14 rounded-full bg-primary shadow-lg hover:shadow-xl transition-all duration-300 ease-out flex items-center justify-center group-hover:scale-110 active:scale-95 border-2 border-white/20 backdrop-blur-sm"
     aria-label="Change Language"
   >
     <img id="current-flag" src={indonesiaFlag.src} alt="Current Language" class="w-7 h-7 rounded-full object-cover transition-transform duration-300 group-hover:rotate-12" />
   </button>
 
   <!-- Language Options -->
-  <div id="lang-options" class="absolute bottom-16 left-0 bg-white rounded-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-300 ease-out border-2 border-[#E1BEE7]/30">
+  <div id="lang-options" class="absolute bottom-16 left-0 bg-white rounded-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-300 ease-out border-2 border-lavender/30">
     <div class="flex flex-col min-w-[160px]">
       <!-- Indonesian Option -->
-      <button data-lang="id" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-[#E1BEE7]/20 transition-all duration-200 border-b border-gray-100 last:border-b-0 group/item">
+      <button data-lang="id" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-lavender/20 transition-all duration-200 border-b border-gray-100 last:border-b-0 group/item">
         <img src={indonesiaFlag.src} alt="Bahasa Indonesia" class="w-6 h-6 rounded-full object-cover" />
         <div class="flex flex-col items-start">
-          <span class="text-sm font-semibold text-[#4A148C] group-hover/item:text-[#00BFA5] transition-colors">Indonesia</span>
+          <span class="text-sm font-semibold text-primary group-hover/item:text-accent transition-colors">Indonesia</span>
           <span class="text-xs text-gray-500">Bahasa</span>
         </div>
       </button>
 
       <!-- English Option -->
-      <button data-lang="en" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-[#E1BEE7]/20 transition-all duration-200 group/item">
+      <button data-lang="en" class="lang-option flex items-center gap-3 px-4 py-3 hover:bg-lavender/20 transition-all duration-200 group/item">
         <img src={ukFlag.src} alt="English" class="w-6 h-6 rounded-full object-cover" />
         <div class="flex flex-col items-start">
-          <span class="text-sm font-semibold text-[#4A148C] group-hover/item:text-[#00BFA5] transition-colors">English</span>
+          <span class="text-sm font-semibold text-primary group-hover/item:text-accent transition-colors">English</span>
           <span class="text-xs text-gray-500">Language</span>
         </div>
       </button>
@@ -37,7 +37,7 @@ import ukFlag from "../../assets/united-kingdom.svg";
   </div>
 
   <!-- Active Language Indicator Badge -->
-  <div id="lang-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-[#00BFA5] to-[#00A896] rounded-full border-2 border-white shadow-md flex items-center justify-center">
+  <div id="lang-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-accent rounded-full border-2 border-white shadow-md flex items-center justify-center">
     <span id="badge-text" class="text-[10px] font-bold text-white">ID</span>
   </div>
 </div>
@@ -97,9 +97,9 @@ import ukFlag from "../../assets/united-kingdom.svg";
     langOptions.forEach((option) => {
       const btn = option as HTMLButtonElement;
       if (btn.dataset.lang === lang) {
-        btn.classList.add("bg-[#E1BEE7]/30");
+        btn.classList.add("bg-lavender/30");
       } else {
-        btn.classList.remove("bg-[#E1BEE7]/30");
+        btn.classList.remove("bg-lavender/30");
       }
     });
 
