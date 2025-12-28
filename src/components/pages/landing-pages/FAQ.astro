@@ -1,0 +1,218 @@
+---
+// FAQ Section Component
+const faqs = [
+  {
+    question: "Apa itu APPDI dan apa tujuan organisasi ini?",
+    answer: "APPDI (Asosiasi Profesi Pelindungan Data Indonesia) adalah organisasi profesional yang bertujuan untuk meningkatkan standar pelindungan data di Indonesia, memfasilitasi kolaborasi antar stakeholder, dan mendukung implementasi regulasi perlindungan data pribadi sesuai dengan UU PDP."
+  },
+  {
+    question: "Siapa saja yang bisa menjadi anggota APPDI?",
+    answer: "Anggota APPDI terbuka untuk berbagai profesional termasuk pengacara, konsultan hukum perusahaan, pegawai kementerian dan lembaga negara, BUMN, akademisi, mahasiswa, dan profesional lainnya yang bergerak di bidang pelindungan data dan privasi."
+  },
+  {
+    question: "Apa manfaat bergabung dengan APPDI?",
+    answer: "Manfaat menjadi anggota APPDI meliputi: akses ke jaringan profesional di bidang data protection, pelatihan dan sertifikasi berkualitas, update regulasi terkini, platform berbagi best practices, kesempatan kolaborasi dengan regulator dan industri, serta akses ke berbagai event dan workshop eksklusif."
+  },
+  {
+    question: "Bagaimana cara mendaftar menjadi anggota?",
+    answer: "Anda dapat mendaftar melalui website resmi APPDI dengan mengisi formulir pendaftaran, melengkapi dokumen persyaratan, dan membayar biaya keanggotaan. Tim kami akan melakukan verifikasi dan menghubungi Anda untuk proses selanjutnya dalam 3-5 hari kerja."
+  },
+  {
+    question: "Apakah ada biaya keanggotaan?",
+    answer: "Ya, terdapat biaya keanggotaan tahunan yang berbeda untuk setiap kategori anggota (individu, korporat, mahasiswa). Biaya ini digunakan untuk mendukung kegiatan organisasi, pengembangan program, dan memberikan benefit kepada anggota. Informasi lengkap dapat dilihat di halaman keanggotaan."
+  },
+  {
+    question: "Apa saja program dan kegiatan yang diadakan APPDI?",
+    answer: "APPDI secara rutin mengadakan berbagai program seperti workshop, seminar nasional dan internasional, pelatihan sertifikasi DPO, diskusi panel dengan regulator, publikasi riset dan whitepaper, serta program mentoring untuk pengembangan profesional anggota."
+  },
+  {
+    question: "Bagaimana APPDI berkontribusi pada regulasi data protection di Indonesia?",
+    answer: "APPDI aktif berkolaborasi dengan regulator seperti Kementerian Kominfo dan lembaga terkait dalam memberikan masukan untuk pengembangan regulasi, menjembatani dialog antara industri dan pemerintah, serta menyosialisasikan implementasi UU PDP kepada masyarakat luas."
+  },
+  {
+    question: "Apakah APPDI menyediakan sertifikasi profesional?",
+    answer: "Ya, APPDI menyediakan program sertifikasi Data Protection Officer (DPO) dan berbagai sertifikasi profesional lainnya yang diakui industri. Program sertifikasi dirancang sesuai standar internasional dan kebutuhan regulasi Indonesia."
+  }
+];
+---
+
+<section class="relative py-20 overflow-hidden bg-gradient-to-br from-white via-[#E1BEE7]/30 to-white">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-10 w-96 h-96 bg-[#4A148C]/5 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#00BFA5]/5 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#E1BEE7]/30 rounded-full blur-3xl animate-pulse"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16 animate-fade-in">
+      <div class="inline-block mb-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-[#4A148C]/10 to-[#00BFA5]/10 text-[#4A148C] rounded-full text-sm font-semibold border border-[#E1BEE7]">
+          ❓ Pertanyaan Umum
+        </span>
+      </div>
+      <h2 class="text-5xl font-bold text-[#4A148C] mb-4 relative inline-block">
+        FAQ
+        <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#4A148C] via-[#00BFA5] to-[#4A148C] rounded-full"></div>
+      </h2>
+      <p class="text-gray-600 text-lg mt-6 max-w-3xl mx-auto">
+        Temukan jawaban atas pertanyaan yang sering diajukan tentang APPDI, keanggotaan, program, dan layanan kami
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <!-- FAQ Accordion -->
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <div 
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#E1BEE7] overflow-hidden animate-slide-up"
+            style={`animation-delay: ${index * 80}ms`}
+          >
+            <button 
+              class="faq-toggle w-full text-left p-6 flex items-start justify-between gap-4 hover:bg-[#E1BEE7]/10 transition-colors duration-300"
+            >
+              <div class="flex items-start gap-4 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A148C] to-[#6A1B9A] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-white font-bold text-lg">{index + 1}</span>
+                </div>
+                <h3 class="font-bold text-[#4A148C] text-lg pt-1 group-hover:text-[#00BFA5] transition-colors">
+                  {faq.question}
+                </h3>
+              </div>
+              <div class="faq-icon w-8 h-8 rounded-lg bg-[#00BFA5]/10 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300">
+                <svg class="w-5 h-5 text-[#00BFA5] transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 pt-0 pl-20">
+                <p class="text-gray-700 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-20px) translateX(20px);
+    }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(20px) translateX(-20px);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out backwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out backwards;
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 10s ease-in-out infinite;
+  }
+
+  /* FAQ Accordion Styles */
+  .group.active .faq-answer {
+    max-height: 500px;
+    padding-top: 0;
+  }
+
+  .group.active .faq-icon svg {
+    transform: rotate(180deg);
+  }
+
+  .group.active .faq-icon {
+    background: linear-gradient(135deg, #4A148C, #6A1B9A);
+  }
+
+  .group.active .faq-icon svg {
+    color: white;
+  }
+</style>
+
+<script>
+  // FAQ Accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    
+    faqToggles.forEach(button => {
+      button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        
+        // Null check
+        if (!faqItem) return;
+        
+        // Close all other FAQs
+        document.querySelectorAll('.group.active').forEach(item => {
+          if (item !== faqItem) {
+            item.classList.remove('active');
+          }
+        });
+        
+        // Toggle current FAQ
+        faqItem.classList.toggle('active');
+      });
+    });
+  });
+</script>

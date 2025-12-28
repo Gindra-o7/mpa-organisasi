@@ -1,0 +1,166 @@
+---
+// Register Section Component
+const benefits = [
+  {
+    icon: "🎯",
+    text: "Akses Eksklusif ke Network Profesional"
+  },
+  {
+    icon: "📚",
+    text: "Pelatihan & Sertifikasi Berkualitas"
+  },
+  {
+    icon: "🚀",
+    text: "Update Regulasi & Best Practices"
+  },
+  {
+    icon: "🤝",
+    text: "Kolaborasi dengan Industri Leader"
+  }
+];
+---
+
+<section class="relative py-24 overflow-hidden bg-gradient-to-br from-[#4A148C] via-[#6A1B9A] to-[#4A148C]">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-[#00BFA5]/10 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#E1BEE7]/10 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#00BFA5]/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+  </div>
+
+  <!-- Decorative Patterns -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 left-10 w-20 h-20 border-2 border-white rounded-lg rotate-12"></div>
+    <div class="absolute top-1/4 right-20 w-16 h-16 border-2 border-[#00BFA5] rounded-full"></div>
+    <div class="absolute bottom-20 left-1/4 w-24 h-24 border-2 border-white rounded-lg -rotate-12"></div>
+    <div class="absolute bottom-1/3 right-1/3 w-12 h-12 border-2 border-[#00BFA5] rounded-full"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-5xl mx-auto">
+      <!-- Main Content -->
+      <div class="text-center mb-12 animate-fade-in">
+        <!-- Badge -->
+        <div class="inline-block mb-6">
+          <span class="px-6 py-3 bg-[#00BFA5]/20 backdrop-blur-sm text-[#00BFA5] rounded-full text-sm font-semibold border border-[#00BFA5]/30 inline-flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Bergabunglah dengan kami
+          </span>
+        </div>
+
+        <!-- Main Heading -->
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          Bergabung dengan Kami
+        </h2>
+        
+        <!-- Subheading -->
+        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Jadilah bagian dari ekosistem pelindungan data terbesar di Indonesia dan tingkatkan karir profesional Anda
+        </p>
+
+        <!-- Benefits Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto animate-slide-up" style="animation-delay: 200ms">
+          {benefits.map((benefit, index) => (
+            <div 
+              class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:scale-105 transition-all duration-300 group animate-fade-in-up"
+              style={`animation-delay: ${300 + index * 100}ms`}
+            >
+              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                {benefit.icon}
+              </div>
+              <p class="text-white font-medium text-sm leading-snug">
+                {benefit.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 800ms">
+          <button class="group px-10 py-5 bg-gradient-to-r from-[#00BFA5] to-[#00897B] text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-[#00BFA5]/50 hover:scale-110 transition-all duration-300 flex items-center gap-3">
+            <span>Daftar Sekarang</span>
+            <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+      transform: translateY(-30px) translateX(30px) scale(1.1);
+    }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+      transform: translateY(30px) translateX(-30px) scale(1.1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out backwards;
+  }
+
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 12s ease-in-out infinite;
+  }
+</style>

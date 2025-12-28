@@ -1,7 +1,6 @@
 ---
-import { ArrowUpRight } from "@lucide/astro";
+import { ArrowUpRight, ArrowRight, ArrowLeft } from "@lucide/astro";
 
-// 1. Mendefinisikan tipe data untuk setiap slide menggunakan TypeScript
 export interface Slide {
 	gambar: string;
 	label: string;
@@ -9,36 +8,35 @@ export interface Slide {
 	cta_url: string;
 }
 
-// 2. Data slides hardcoded dengan tema kemanusiaan, agama, dan sosial
 const slides: Slide[] = [
 	{
 		gambar: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&h=1080&fit=crop",
-		label: "Memberi <span class='text-[#FFD700]'>Harapan</span> untuk Mereka yang Membutuhkan",
+		label: "Memberi Harapan untuk Mereka yang Membutuhkan",
 		cta_label: "Jadi Relawan",
 		cta_url: "/program"
 	},
 	{
 		gambar: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop",
-		label: "Program <span class='text-[#81D4FA]'>Kemanusiaan</span> yang Membawa Perubahan",
+		label: "Program Kemanusiaan yang Membawa Perubahan",
 		cta_label: "Lihat Kegiatan",
 		cta_url: "/program"
 	},
 	{
 		gambar: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&h=1080&fit=crop",
-		label: "Menebar <span class='text-[#FFD180]'>Rahmat</span> melalui Kebaikan Bersama",
+		label: "Menebar Rahmat melalui Kebaikan Bersama",
 		cta_label: "Berbagi Kebaikan",
 		cta_url: "/program"
 	},
 	{
 		gambar: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1920&h=1080&fit=crop",
-		label: "Yayasan <span class='text-[#FFD700]'>Sawiyan</span>: Berpijak pada Iman, Bergerak untuk Umat",
+		label: "Yayasan Sawiyan: Berpijak pada Iman, Bergerak untuk Umat",
 		cta_label: "Pelajari Lebih Lanjut",
 		cta_url: "/profile"
 	}
 ];
 
-// 3. Autoplay delay
 const autoplayDelay = 6000;
+const slidesData = slides.map(slide => slide.label);
 ---
 
 <div
@@ -63,7 +61,7 @@ const autoplayDelay = 6000;
 							loading="lazy"
 						/>
 						<!-- Gradient overlay untuk kontras yang lebih baik -->
-						<div class="absolute inset-0 bg-gradient-to-br from-[#388E3C]/80 via-[#388E3C]/70 to-[#1B5E20]/80"></div>
+						<div class="absolute inset-0 bg-gradient-to-br from-[#4A148C]/80 via-[#6A1B9A]/70 to-[#4A148C]/80"></div>
 					</div>
 				))
 			}
@@ -71,9 +69,9 @@ const autoplayDelay = 6000;
 	</div>
 
 	<!-- Fixed content overlay -->
-	<div class="absolute inset-0 flex flex-col gap-4 md:gap-6 justify-center items-start w-full h-full p-6 md:p-12 lg:px-16 xl:px-24  z-10 max-w-4xl pointer-events-none">
+	<div class="absolute inset-0 flex flex-col gap-4 md:gap-6 justify-center items-center w-full h-full p-6 md:p-12 lg:px-16 xl:px-24 z-10 pointer-events-none">
 		<!-- Text container dengan animasi -->
-		<div id="text-container" class="text-left pointer-events-auto">
+		<div id="text-container" class="text-left pointer-events-auto max-w-4xl">
 			<div
 				id="slide-text"
 				set:html={slides[0].label}
@@ -84,12 +82,28 @@ const autoplayDelay = 6000;
 		<!-- Single CTA Button -->
 		<button
 			onclick="window.location.href='/program'"
-			class="flex items-center gap-2 text-white text-sm md:text-base font-medium md:px-6 md:py-3 px-4 py-2 border-2 border-white hover:bg-white/10 active:scale-95 transition-all duration-200 cursor-pointer rounded-lg pointer-events-auto"
+			class="flex items-center gap-2 text-white text-sm md:text-base font-medium md:px-6 md:py-3 px-4 py-2 border-2 border-[#00BFA5] bg-[#00BFA5] hover:bg-[#00897B] hover:border-[#00897B] active:scale-95 transition-all duration-200 cursor-pointer rounded-lg pointer-events-auto shadow-lg"
 		>
-			Lihat Program
+			Selengkapnya
 			<ArrowUpRight class="md:w-5 md:h-5 w-4 h-4" />
 		</button>
 	</div>
+
+	<!-- Navigation Buttons -->
+	<button
+		id="prev-btn"
+		class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-[#4A148C]/80 hover:bg-[#4A148C] text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
+		aria-label="Previous slide"
+	>
+		<ArrowLeft class="h-5 w-5 md:h-6 md:w-6" />
+	</button>
+	<button
+		id="next-btn"
+		class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-[#4A148C]/80 hover:bg-[#4A148C] text-white p-3 md:p-4 rounded-full transition-all duration-200 active:scale-95 shadow-lg pointer-events-auto"
+		aria-label="Next slide"
+	>
+		<ArrowRight class="h-5 w-5 md:h-6 md:w-6" />
+	</button>
 </div>
 
 <style>
@@ -104,14 +118,7 @@ const autoplayDelay = 6000;
 	}
 </style>
 
-<script define:vars={{ autoplayDelay }}>
-	const slidesData = [
-		"Memberi <span class='text-[#FFD700]'>Harapan</span> untuk Mereka yang Membutuhkan",
-		"Program <span class='text-[#81D4FA]'>Kemanusiaan</span> yang Membawa Perubahan",
-		"Menebar <span class='text-[#FFD180]'>Rahmat</span> melalui Kebaikan Bersama",
-		"Yayasan <span class='text-[#FFD700]'>Sawiyan</span>: Berpijak pada Iman, Bergerak untuk Umat"
-	];
-
+<script define:vars={{ autoplayDelay, slidesData }}>
 	document.addEventListener("DOMContentLoaded", () => {
 		const track = document.getElementById("carousel-track");
 		const textElement = document.getElementById("slide-text");
@@ -219,9 +226,36 @@ const autoplayDelay = 6000;
 			}
 		});
 
+		// Navigation functions
+		const goToPrev = () => {
+			if (isTransitioning) return;
+			isTransitioning = true;
+			currentIndex--;
+			track.style.transition = "transform 0.7s ease-in-out";
+			setPositionByIndex();
+			timeSinceLastSlide = 0;
+			lastTime = performance.now();
+		};
+
+		const goToNext = () => {
+			if (isTransitioning) return;
+			isTransitioning = true;
+			currentIndex++;
+			track.style.transition = "transform 0.7s ease-in-out";
+			setPositionByIndex();
+			timeSinceLastSlide = 0;
+			lastTime = performance.now();
+		};
+
 		// Attach event listeners
 		track.addEventListener("transitionend", checkIndex);
 		window.addEventListener("resize", setInitialPosition);
+
+		// Button event listeners
+		const prevBtn = document.getElementById("prev-btn");
+		const nextBtn = document.getElementById("next-btn");
+		if (prevBtn) prevBtn.addEventListener("click", goToPrev);
+		if (nextBtn) nextBtn.addEventListener("click", goToNext);
 
 		// Initialize text animation
 		textElement.style.transition = "opacity 0.3s ease-out, transform 0.3s ease-out";
