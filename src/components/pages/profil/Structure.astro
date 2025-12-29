@@ -1,0 +1,152 @@
+---
+// Organizational Structure Section
+const structures = [
+  {
+    title: "Dewan Pengawas",
+    icon: "👁️",
+    color: "primary",
+    members: [
+      { name: "Dr. Ahmad Suryadi", position: "Ketua Dewan Pengawas", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=300&fit=crop" },
+      { name: "Prof. Linda Kusuma", position: "Anggota Dewan Pengawas", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&h=300&fit=crop" },
+      { name: "Ir. Bambang Setiawan", position: "Anggota Dewan Pengawas", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&h=300&fit=crop" }
+    ]
+  },
+  {
+    title: "Dewan Pembina",
+    icon: "🎓",
+    color: "accent",
+    members: [
+      { name: "Prof. Dr. Siti Rahmawati", position: "Ketua Dewan Pembina", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&h=300&fit=crop" },
+      { name: "Dr. Eko Prasetyo", position: "Anggota Dewan Pembina", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&h=300&fit=crop" },
+      { name: "Dr. Maya Anggraini", position: "Anggota Dewan Pembina", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=300&h=300&fit=crop" }
+    ]
+  },
+  {
+    title: "Dewan Pengurus",
+    icon: "⚙️",
+    color: "lavender-dark",
+    members: [
+      { name: "Rudi Hartono", position: "Ketua Umum", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&h=300&fit=crop" },
+      { name: "Sarah Wijaya", position: "Sekretaris Jenderal", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&fit=crop" },
+      { name: "Budi Santoso", position: "Bendahara", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&h=300&fit=crop" },
+      { name: "Indah Permata", position: "Koordinator Program", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300&h=300&fit=crop" },
+      { name: "Dimas Prasetyo", position: "Koordinator Komunikasi", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=300&h=300&fit=crop" }
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 bg-gray-light">
+  <div class="container mx-auto px-4">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12 md:mb-16 animate-fade-in">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4">
+          Struktur Organisasi
+        </h2>
+        <div class="w-24 h-1 bg-accent mx-auto"></div>
+        <p class="text-gray-dark text-lg mt-6 max-w-2xl mx-auto">
+          Komposisi kepemimpinan dan struktur organisasi APPDI
+        </p>
+      </div>
+
+      <!-- Structure Cards Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {structures.map((structure, index) => (
+          <div 
+            class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group animate-slide-up hover:-translate-y-2"
+            style={`animation-delay: ${index * 150}ms`}
+          >
+            <!-- Card Header -->
+            <div class={`bg-${structure.color} p-6 relative overflow-hidden`}>
+              <div class="absolute top-0 right-0 text-6xl opacity-10 transform translate-x-4 -translate-y-2">
+                {structure.icon}
+              </div>
+              <h3 class="text-2xl font-bold text-white relative z-10">
+                {structure.title}
+              </h3>
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-white/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 space-y-4">
+              {structure.members.map((member, memberIndex) => (
+                <div 
+                  class="pb-4 border-b border-gray-200 last:border-b-0 last:pb-0 transition-all duration-300 hover:bg-gray-50 rounded-lg p-3 -m-3"
+                  style={`animation-delay: ${(index * 150) + (memberIndex * 50)}ms`}
+                >
+                  <div class="flex items-center gap-4">
+                    <!-- Member Photo -->
+                    <div class="flex-shrink-0">
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        class="w-16 h-16 rounded-full object-cover border-3 border-gray-200 group-hover:border-accent transition-colors duration-300"
+                      />
+                    </div>
+                    <!-- Member Info -->
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-bold text-primary text-base mb-1 truncate">
+                        {member.name}
+                      </h4>
+                      <p class="text-gray-dark text-sm">
+                        {member.position}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Card Footer Accent -->
+            <div class={`h-1 bg-${structure.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+          </div>
+        ))}
+      </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-delayed {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out backwards;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fade-in-delayed 1s ease-out 0.8s backwards;
+  }
+</style>

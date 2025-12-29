@@ -1,35 +1,12 @@
 ---
-// Testimonials Section Component
+import { themeColors } from "../../../configs/theme.ts";
+
 const testimonials = [
-  {
-    name: "Dr. Budi Raharjo",
-    position: "CEO",
-    company: "TechCorp Indonesia",
-    image: "https://ui-avatars.com/api/?name=Budi+Raharjo&size=200&background=4A148C&color=fff",
-    quote: "APPDI telah menjadi mitra strategis kami dalam membangun ekosistem pelindungan data yang kuat. Kolaborasi yang produktif dan profesional.",
-    rating: 5
-  },
-  {
-    name: "Sarah Wijaya",
-    position: "Chief Privacy Officer",
-    company: "Bank Digital Nusantara",
-    image: "https://ui-avatars.com/api/?name=Sarah+Wijaya&size=200&background=00BFA5&color=fff",
-    quote: "Organisasi yang sangat berkomitmen dalam meningkatkan standar pelindungan data di Indonesia. Program pelatihan mereka sangat berkualitas.",
-    rating: 5
-  },
-  {
-    name: "Prof. Ahmad Santoso",
-    position: "Dekan Fakultas Hukum",
-    company: "Universitas Indonesia",
-    image: "https://ui-avatars.com/api/?name=Ahmad+Santoso&size=200&background=6A1B9A&color=fff",
-    quote: "APPDI memberikan kontribusi nyata dalam pengembangan regulasi dan standar pelindungan data yang applicable di Indonesia.",
-    rating: 5
-  },
   {
     name: "Linda Kusuma",
     position: "Head of Legal & Compliance",
     company: "E-Commerce Group",
-    image: "https://ui-avatars.com/api/?name=Linda+Kusuma&size=200&background=00BFA5&color=fff",
+    avatarColor: "accent",
     quote: "Networking yang luar biasa dan insight yang valuable. APPDI benar-benar memahami kebutuhan industri dalam hal data protection.",
     rating: 5
   },
@@ -37,7 +14,7 @@ const testimonials = [
     name: "Rudi Prasetyo",
     position: "Director of IT Security",
     company: "Telco Digital",
-    image: "https://ui-avatars.com/api/?name=Rudi+Prasetyo&size=200&background=4A148C&color=fff",
+    avatarColor: "primary",
     quote: "Platform yang sempurna untuk berbagi best practices dan learning dari praktisi lain. Sangat merekomendasikan untuk bergabung.",
     rating: 5
   },
@@ -45,11 +22,18 @@ const testimonials = [
     name: "Maya Anggraini",
     position: "Data Protection Officer",
     company: "Fintech Innovations",
-    image: "https://ui-avatars.com/api/?name=Maya+Anggraini&size=200&background=6A1B9A&color=fff",
+    avatarColor: "lavender",
     quote: "APPDI menjadi wadah yang tepat untuk kolaborasi antar industri dalam menghadapi tantangan pelindungan data di era digital.",
     rating: 5
   }
 ];
+
+const getAvatarUrl = (name: string, colorKey: string) => {
+  const encodedName = encodeURIComponent(name);
+  const hexColor = themeColors[colorKey as keyof typeof themeColors] || themeColors.primary;
+  
+  return `https://ui-avatars.com/api/?name=${encodedName}&size=200&background=${hexColor}&color=fff`;
+};
 ---
 
 <section class="relative py-20 overflow-hidden bg-primary">
@@ -96,7 +80,7 @@ const testimonials = [
             <div class="flex items-center gap-4 mb-6">
               <div class="relative">
                 <img 
-                  src={testimonial.image} 
+                  src={getAvatarUrl(testimonial.name, testimonial.avatarColor)} 
                   alt={testimonial.name}
                   class="w-16 h-16 rounded-full border-4 border-lavender group-hover:border-accent transition-colors duration-300"
                 />

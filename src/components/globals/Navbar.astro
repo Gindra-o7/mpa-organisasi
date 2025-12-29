@@ -32,7 +32,7 @@ const currentPath = Astro.url.pathname;
             return (
               <a href={item.href} class={`relative text-base transition-colors duration-300 ease-out cursor-pointer group py-1 ${isActive ? "active" : ""}`}>
                 <span class="relative z-10">{item.name}</span>
-                <span class={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent to-accent-light transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+                <span class={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-white to-lavender-light transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
               </a>
             );
           })

@@ -1,0 +1,81 @@
+---
+// About APPDI Section
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left Content -->
+        <div class="space-y-6 animate-fade-in-left">
+          <!-- Title with Underline -->
+          <div class="mb-8">
+            <h2 class="text-5xl font-bold text-primary mb-4 relative inline-block">
+              Apa Kata Mereka
+              <div class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></div>
+            </h2>
+          </div>
+
+          <!-- Description Paragraphs -->
+          <p class="text-gray-dark text-base md:text-lg leading-relaxed">
+            Asosiasi Praktisi Pelindungan Data Indonesia (APPDI) merupakan suatu wadah komunikasi bagi para praktisi yang memiliki perhatian khusus dan minat pada bidang pelindungan data pribadi di Indonesia. APPDI didirikan untuk para Data Protection Officer (DPO) dan praktisi yang berpraktik di wilayah Indonesia. Selain itu, APPDI ini juga diharapkan dapat menjadi penghubung antara para pemangku kepentingan terkait perkembangan dari kebijakan-kebijakan pelindungan data di Indonesia.
+          </p>
+
+          <p class="text-gray-dark text-base md:text-lg leading-relaxed">
+            APPDI didirikan secara resmi pada tanggal 17 Juli 2020 berdasarkan Akta Notaris No. 104 dibuat dihadapan Notaris Jose Dima Satria dan telah mendapatkan pengesahan oleh Kementerian Hukum dan Hak Asasi Manusia berdasarkan Surat Keputusan Menteri Hukum dan Hak Asasi Manusia No. AHU-00074.AH.01.07.TAHUN 2020 tanggal 2 September 2020.
+          </p>
+        </div>
+
+        <!-- Right Content - Logo -->
+        <div class="flex items-center justify-center animate-fade-in-right">
+          <div class="relative">
+            <!-- APPDI Logo Text -->
+            <div class="text-center">
+              <h3 class="text-8xl md:text-9xl font-black text-primary opacity-90 tracking-tight">
+                APPDI
+              </h3>
+              <!-- Decorative Key Icon -->
+              <div class="absolute -top-4 -right-4 text-accent opacity-80">
+                <svg class="w-16 h-16 md:w-20 md:h-20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-left {
+    animation: fade-in-left 0.8s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: fade-in-right 0.8s ease-out 0.2s backwards;
+  }
+</style>
